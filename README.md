@@ -10,4 +10,4 @@ Excel: https://docs.google.com/spreadsheets/d/1hReDOnL4jtHzmRnwC9OHZyWQnlX87n8bZ
 
 @rossetow
 @thaironn
-@pedrocardosofaleiro
+[@pedrocardosofaleiro](https://github.com/PedroCardosoFaleiro)https://github.com/PedroCardosoFaleiro
