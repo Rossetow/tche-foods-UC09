@@ -12,18 +12,18 @@ CREATE TABLE `db_tchefoods_final`.`tb_user` (
   `user_adress` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`user_id`));
   
-CREATE TABLE `db_tchefoods_final`.`tb_cathegory` (
-  `cathegory_id` INT NOT NULL AUTO_INCREMENT,
-  `catheogory_desc` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`cathegory_id`));
+CREATE TABLE `db_tchefoods_final`.`tb_category` (
+  `category_id` INT NOT NULL AUTO_INCREMENT,
+  `cateogory_desc` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`category_id`));
 
 CREATE TABLE `db_tchefoods_final`.`tb_product` (
   `product_id` INT NOT NULL AUTO_INCREMENT,
   `product_name` VARCHAR(45) NOT NULL,
   `product_price` FLOAT NOT NULL,
-  `product_cathegory_id` INT NULL,
+  `product_category_id` INT NULL,
   PRIMARY KEY (`product_id`),
-  FOREIGN KEY (`product_cathegory_id`) REFERENCES `db_tchefoods_final`.`tb_cathegory`(`cathegory_id`));
+  FOREIGN KEY (`product_category_id`) REFERENCES `db_tchefoods_final`.`tb_category`(`category_id`));
   
 CREATE TABLE `db_tchefoods_final`.`tb_paymentmethod` (
   `paymentmthod_id` INT NOT NULL AUTO_INCREMENT,
