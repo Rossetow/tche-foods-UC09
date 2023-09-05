@@ -2,7 +2,7 @@ package br.com.tchefoods.infra;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-public class ConectionMysql {
+public class ConnectionMysql {
     private String serverName = "127.0.0.1";
     private String user = "root";
     private String password = "senac";
