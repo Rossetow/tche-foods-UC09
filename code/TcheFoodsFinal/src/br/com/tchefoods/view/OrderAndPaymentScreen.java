@@ -13,6 +13,6 @@ public class OrderAndPaymentScreen {
     private JButton ButtonBuy;
     private JLabel JLTitle;
     private JLabel JLProductName;
-    private JLabel JLPrice;
+    private JLabel JLQuantity;
     private JLabel JLProductPriceTotal;
 }
