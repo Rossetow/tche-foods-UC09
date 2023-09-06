@@ -8,7 +8,7 @@ import java.sql.SQLException;
         private String password = "senac";
         private String dataBaseName = "db_tchefoods_final";
 
-        public Connection obterConexao() throws ClassNotFoundException, SQLException {
+        public Connection getConection() throws ClassNotFoundException, SQLException {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String url = "jdbc:mysql://" + this.serverName + ":3306/" + this.dataBaseName;
