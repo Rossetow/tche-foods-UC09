@@ -38,14 +38,14 @@ public class CategoryDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("SELECT desc FROM tb_category");
+        stmt = conn.prepareStatement("SELECT category_id, category_desc FROM tb_category");
         ResultSet rs = stmt.executeQuery();
         ArrayList<CategoryModel> output = new ArrayList<CategoryModel>();
 
         while(rs.next()){
             CategoryModel addCategory = new CategoryModel();
-            category.setId(rs.getInt("desc"));
-            category.setDesc(rs.getString("desc"));
+            category.setId(rs.getInt("category_id"));
+            category.setDesc(rs.getString("category_desc"));
             output.add(addCategory);
         }
         return (output);
