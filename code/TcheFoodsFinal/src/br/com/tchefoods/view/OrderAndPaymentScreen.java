@@ -15,4 +15,12 @@ public class OrderAndPaymentScreen {
     private JLabel JLProductName;
     private JLabel JLQuantity;
     private JLabel JLProductPriceTotal;
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("OrderAndPaymentScreen");
+        frame.setContentPane(new OrderAndPaymentScreen().PanelOrder);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }
