@@ -4,12 +4,12 @@ import javax.swing.*;
 
 public class ProductScreen {
     private JTextField TFPrice;
-    private JTextField TFDescription;
+    private JTextField TFNameProduct;
     private JLabel JLAddProducts;
     private JLabel JLPrice;
     private JLabel JLIdCategory;
     private JTextField TFIdCategory;
-    private JLabel JLDescription;
+    private JLabel JLNameProduct;
     private JPanel JPSddProducts;
     private JButton BSubmit;
 
