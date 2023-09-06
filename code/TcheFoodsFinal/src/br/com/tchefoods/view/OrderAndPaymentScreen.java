@@ -5,7 +5,6 @@ import javax.swing.*;
 public class OrderAndPaymentScreen {
     private JPanel PanelOrder;
     private JTextField TFProductName;
-    private JTextField TFPrice;
     private JButton ButtonAdd;
     private JTable TableProducts;
     private JTextField TFTtotalPrice;
@@ -15,6 +14,7 @@ public class OrderAndPaymentScreen {
     private JLabel JLProductName;
     private JLabel JLQuantity;
     private JLabel JLProductPriceTotal;
+    private JSpinner SPQuantity;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("OrderAndPaymentScreen");
