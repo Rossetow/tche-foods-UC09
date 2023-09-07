@@ -1,13 +1,27 @@
 package br.com.tchefoods.model;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class UserModel {
     private int id;
     private String name;
     private String surname;
     private String email;
-    private String password;
+    private byte[] password;
     private String cellphone;
     private String adress;
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    private String gender;
 
     public void setId(int id) {
         this.id = id;
@@ -25,8 +39,11 @@ public class UserModel {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+
+        MessageDigest algorithm = MessageDigest.getInstance("MD5");
+        byte messageDigest[] = algorithm.digest(password.getBytes("UTF-8"));
+        this.password = messageDigest;
     }
 
     public void setCellphone(String cellphone) {
@@ -53,7 +70,7 @@ public class UserModel {
         return email;
     }
 
-    public String getPassword() {
+    public byte[] getPassword() {
         return password;
     }
 

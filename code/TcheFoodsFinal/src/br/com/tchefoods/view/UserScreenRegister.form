@@ -48,7 +48,7 @@
           <text value="Senha"/>
         </properties>
       </component>
-      <component id="4a33e" class="javax.swing.JTextField" binding="TFName">
+      <component id="4a33e" class="javax.swing.JTextField" binding="JTFName">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -56,7 +56,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="7b520" class="javax.swing.JTextField" binding="TFSecondName">
+      <component id="7b520" class="javax.swing.JTextField" binding="JTFSecondName">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -64,7 +64,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="1aee0" class="javax.swing.JTextField" binding="TFEmail">
+      <component id="1aee0" class="javax.swing.JTextField" binding="JTFEmail">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -72,7 +72,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="e23" class="javax.swing.JTextField" binding="TFPassword">
+      <component id="e23" class="javax.swing.JTextField" binding="JTFPassword">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -80,7 +80,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="2a797" class="javax.swing.JTextField" binding="TFCellphoneNumber">
+      <component id="2a797" class="javax.swing.JTextField" binding="JTFCellphoneNumber">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -96,12 +96,12 @@
           <text value="Telefone de Contato"/>
         </properties>
       </component>
-      <component id="a182a" class="javax.swing.JButton" binding="ButtonSubmit">
+      <component id="a182a" class="javax.swing.JButton" binding="JBSubmit">
         <constraints>
           <grid row="8" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Enviar!"/>
+          <text value="Save!"/>
         </properties>
       </component>
       <component id="3556f" class="javax.swing.JLabel" binding="JLAdress">
@@ -112,7 +112,7 @@
           <text value="Endereço"/>
         </properties>
       </component>
-      <component id="293ba" class="javax.swing.JTextField" binding="TFAdress">
+      <component id="293ba" class="javax.swing.JTextField" binding="JTFAdress">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -120,7 +120,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="444a9" class="javax.swing.JRadioButton" binding="RBMasculine">
+      <component id="444a9" class="javax.swing.JRadioButton" binding="JRBMasculine">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -128,7 +128,7 @@
           <text value="Masculino"/>
         </properties>
       </component>
-      <component id="ed3b5" class="javax.swing.JRadioButton" binding="RBFeminine">
+      <component id="ed3b5" class="javax.swing.JRadioButton" binding="JRBFeminine">
         <constraints>
           <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -144,7 +144,7 @@
           <text value="Gênero"/>
         </properties>
       </component>
-      <component id="4e603" class="javax.swing.JRadioButton" binding="RBOthers">
+      <component id="4e603" class="javax.swing.JRadioButton" binding="JRBOthers">
         <constraints>
           <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
