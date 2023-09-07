@@ -38,16 +38,26 @@ public class CategoryDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("SELECT desc FROM tb_category");
+        stmt = conn.prepareStatement("SELECT category_id, category_desc FROM tb_category");
         ResultSet rs = stmt.executeQuery();
         ArrayList<CategoryModel> output = new ArrayList<CategoryModel>();
 
         while(rs.next()){
-            CategoryModel category = new CategoryModel();
-            category.setId(rs.getInt("desc"));
-            category.setDesc(rs.getString("desc"));
-            output.add(category);
+            CategoryModel addCategory = new CategoryModel();
+            category.setId(rs.getInt("category_id"));
+            category.setDesc(rs.getString("category_desc"));
+            output.add(addCategory);
         }
         return (output);
+    }
+
+    public void delete (CategoryModel category) throws SQLException, ClassNotFoundException {
+        ConnectionMysql conexaoMysql = new ConnectionMysql();
+        Connection conn = conexaoMysql.getConection();
+        PreparedStatement stmt = null;
+
+        stmt = conn.prepareStatement("DELETE FROM tb_category WHERE id = ?");
+        stmt.setInt(1, category.getId());
+        ResultSet rs = stmt.executeQuery();
     }
 }

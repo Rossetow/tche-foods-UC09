@@ -24,7 +24,7 @@ public class ProductDAO {
 
         stmt.setFloat(2, product.getPrice());
 
-        stmt.setString(3, product.getCategoryId();
+        stmt.setString(3, product.getCategoryId());
 
         stmt.executeUpdate();
     }
