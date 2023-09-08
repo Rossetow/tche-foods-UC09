@@ -33,7 +33,7 @@ public class UserDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("UPDATE tb_user SET user_name = ?, user_surname = ?, user_email = ?, user_password = ?, user_cellphone = ?, user_adress = ?, user_gender = ? WHERE ID = ?");
+        stmt = conn.prepareStatement("UPDATE tb_user SET user_name = ?, user_surname = ?, user_email = ?, user_password = ?, user_cellphone = ?, user_adress = ?, user_gender = ? WHERE user_id = ?");
         stmt.setString(1, user.getName());
         stmt.setString(2, user.getSurname());
         stmt.setString(3, user.getEmail());
