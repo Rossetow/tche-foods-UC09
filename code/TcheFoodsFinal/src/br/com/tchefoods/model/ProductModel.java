@@ -26,7 +26,7 @@ public class ProductModel {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String text) {
         this.price = price;
     }
 

@@ -6,35 +6,37 @@ import br.com.tchefoods.model.ProductModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
-public class ProductScreenRegister {
-    private JPanel JPProductScreenRegister;
-    private JTextField TFName;
-    private JLabel JLNameProduct;
+public class ProductScreenEdit {
+    private JTextField TFId;
     private JComboBox CBIdCategory;
-    private JLabel JLIdCategoryProduct;
+    private JTextField TFName;
     private JTextField TFPrice;
-    private JLabel JLPriceProduct;
     private JButton BSubmit;
-    private JLabel JLProductScreen;
+    private JLabel JPProductScreenEdit;
+    private JLabel JLPriceProduct;
+    private JLabel JLIdCategoryProduct;
+    private JLabel JLNameProduct;
+    private JLabel JLId;
 
-    public ProductScreenRegister() {
+    public ProductScreenEdit() {
         BSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (TFName.getText().isEmpty() || TFPrice.getText().isEmpty() || CBIdCategory.getSelectedIndex() == -1){ /*Não consegui colocar no cobo box o is Emptsy*/
-                    JOptionPane.showMessageDialog(JPProductScreenRegister, "Please fullfill all the options");
+                if (TFId.getText().isEmpty() || TFName.getText().isEmpty() || TFPrice.getText().isEmpty() || CBIdCategory.getSelectedIndex() == -1){ /*Não consegui colocar no cobo box o is Emptsy*/
+                    JOptionPane.showMessageDialog(JPProductScreenEdit, "Please fullfill all the options");
                     return;
                 }
 
                 ProductModel user = new ProductModel();
 
+                user.setId(Integer.parseInt(TFId.getText()));
                 user.setName(TFName.getText());
-
                 user.setCategoryId(CBIdCategory.getSelectedIndex());
-
                 user.setPrice(TFPrice.getText());
 
                 try {
@@ -45,14 +47,14 @@ public class ProductScreenRegister {
                     throw new RuntimeException(ex);
                 }
 
-                JOptionPane.showMessageDialog(JPProductScreenRegister, "User added in the database successfuly!");
+                JOptionPane.showMessageDialog(JPProductScreenEdit, "User edited in the database successfully!");
             }
         });
     }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("ProductScreen");
-        frame.setContentPane(new ProductScreenRegister().JPProductScreenRegister);
+        frame.setContentPane(new ProductScreenEdit().JPProductScreenEdit);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

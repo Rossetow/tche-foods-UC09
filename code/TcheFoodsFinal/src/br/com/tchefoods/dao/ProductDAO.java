@@ -27,16 +27,21 @@ public class ProductDAO {
 
         stmt.executeUpdate();
     }
-
-
-    public void edit(ProductModel product) throws SQLException, ClassNotFoundException {
+    public void edit (ProductModel user) throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("UPDATE tb_category SET WHERE id = ?");
-        stmt.setInt(1, product.getId());
+        stmt = conn.prepareStatement("UPDATE tb_user SET user_name = ?, set_price = ?, set_categoryId = ? WHERE user_id = ?");
+        stmt.setString(1, user.getName());
+        stmt.setInt(2, user.getCategoryId());
+        stmt.setFloat(3, user.getPrice());
+        stmt.setInt(8,user.getId());
+        stmt.executeUpdate();
     }
+
+
+
 
     public ArrayList<ProductModel> selectAll (ProductModel product) throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
