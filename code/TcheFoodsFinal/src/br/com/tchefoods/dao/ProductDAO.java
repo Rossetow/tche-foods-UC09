@@ -2,6 +2,7 @@ package br.com.tchefoods.dao;
 
 import br.com.tchefoods.infra.ConnectionMysql;
 import br.com.tchefoods.model.ProductModel;
+import br.com.tchefoods.model.UserModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,13 +22,13 @@ public class ProductDAO {
         stmt = con.prepareStatement("INSERT INTO user(name ,price, categoryId ) VALUES (?,?,?)");
 
         stmt.setString(1, product.getName());
-
         stmt.setFloat(2, product.getPrice());
-
-        stmt.setString(3, product.getCategoryId());
+        stmt.setInt(3, product.getCategoryId());
 
         stmt.executeUpdate();
     }
+
+
     public void edit(ProductModel product) throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();

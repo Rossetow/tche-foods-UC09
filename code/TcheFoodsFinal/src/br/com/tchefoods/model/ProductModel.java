@@ -3,8 +3,8 @@ package br.com.tchefoods.model;
 public class ProductModel {
     private int id;
     private String name;
-    private float price;
     private int categoryId;
+    private float price;
 
     public int getId() {
         return id;
