@@ -15,7 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
-import static sun.tools.jconsole.inspector.XDataViewer.dispose;
 
 public class UserScreenEdit {
     private JPanel UserPanel;
@@ -112,7 +111,7 @@ public class UserScreenEdit {
                 int row = JTUser.getSelectedRow();
                 if(row >= 0){
                     user.setId((int)JTUser.getModel().getValueAt(row, 0));
-                    UserDAO daoTable = new UserDAO()
+                    UserDAO daoTable = new UserDAO();
 
                     try {
                         selected = daoTable.selectById(user);
@@ -126,7 +125,7 @@ public class UserScreenEdit {
                     JTFEmail.setText(selected.getEmail());
                     JTFAdress.setText(selected.getAdress());
                     JTFCellphoneNumber.setText(selected.getCellphone());
-                    dispose();
+
                 }
             }
         });
