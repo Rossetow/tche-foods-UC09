@@ -24,7 +24,7 @@ public class ProductScreenRegister {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (TFName.getText().isEmpty() || TFPrice.getText().isEmpty() || CBIdCategory.getSelectedIndex() == -1){ /*Não consegui colocar no cobo box o is Emptsy*/
+                if (TFName.getText().isEmpty() || TFPrice.getText().isEmpty() || CBIdCategory.getSelectedIndex() == -1){
                     JOptionPane.showMessageDialog(JPProductScreenRegister, "Please fullfill all the options");
                     return;
                 }
@@ -32,9 +32,7 @@ public class ProductScreenRegister {
                 ProductModel user = new ProductModel();
 
                 user.setName(TFName.getText());
-
                 user.setCategoryId(CBIdCategory.getSelectedIndex());
-
                 user.setPrice(TFPrice.getText());
 
                 try {
