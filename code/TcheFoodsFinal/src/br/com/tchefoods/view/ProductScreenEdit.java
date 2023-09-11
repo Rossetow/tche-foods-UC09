@@ -11,30 +11,34 @@ import java.sql.SQLException;
 public class ProductScreenEdit {
 
 
-    private JButton BSubmit;
-    private JTextField TFId;
-    private JTextField TFNome;
-    private JComboBox TFCaterory;
-    private JTextField textField3;
+    private JButton JBSubmit;
+    private JTextField JTFId;
+    private JTextField JTFName;
+    private JComboBox JCBCaterory;
+    private JTextField JTFPrice;
     private JPanel JPProductScreenEdit;
     private JLabel JLEdicaoProduto;
+    private JLabel JLNameProduct;
+    private JLabel JLIdCategoryProduct;
+    private JLabel JLPriceProduct;
+    private JLabel JLId;
 
     public ProductScreenEdit() {
-        BSubmit.addActionListener(new ActionListener() {
+        JBSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (TFId.getText().isEmpty() || TFName.getText().isEmpty() || TFPrice.getText().isEmpty() || CBIdCategory.getSelectedIndex() == -1){
-                    JOptionPane.showMessageDialog(JLProductScreenEdit, "Please fullfill all the options");
+                if (JTFId.getText().isEmpty() || JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBCaterory.getSelectedIndex() == -1){
+                    JOptionPane.showMessageDialog(JPProductScreenEdit, "Please fullfill all the options");
                     return;
                 }
 
                 ProductModel user = new ProductModel();
 
-                user.setId(Integer.parseInt(TFId.getText()));
-                user.setName(TFName.getText());
-                user.setCategoryId(CBIdCategory.getSelectedIndex());
-                user.setPrice(TFPrice.getText());
+                user.setId(Integer.parseInt(JTFId.getText()));
+                user.setName(JTFName.getText());
+                user.setCategoryId(JCBCaterory.getSelectedIndex());
+                user.setPrice(JTFPrice.getText());
 
                 try {
                     daoProduct.edit(user);
@@ -44,7 +48,7 @@ public class ProductScreenEdit {
                     throw new RuntimeException(ex);
                 }
 
-                JOptionPane.showMessageDialog(JLProductScreenEdit, "User edited in the database successfully!");
+                JOptionPane.showMessageDialog(JPProductScreenEdit, "User edited in the database successfully!");
             }
         });
     }

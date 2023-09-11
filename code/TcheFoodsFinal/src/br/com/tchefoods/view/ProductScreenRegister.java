@@ -10,30 +10,30 @@ import java.sql.SQLException;
 
 public class ProductScreenRegister {
     private JPanel JPProductScreenRegister;
-    private JTextField TFName;
+    private JTextField JTFName;
     private JLabel JLNameProduct;
-    private JComboBox CBIdCategory;
+    private JComboBox JCBIdCategory;
     private JLabel JLIdCategoryProduct;
-    private JTextField TFPrice;
+    private JTextField JTFPrice;
     private JLabel JLPriceProduct;
-    private JButton BSubmit;
+    private JButton JBSubmit;
     private JLabel JLProductScreen;
 
     public ProductScreenRegister() {
-        BSubmit.addActionListener(new ActionListener() {
+        JBSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (TFName.getText().isEmpty() || TFPrice.getText().isEmpty() || CBIdCategory.getSelectedIndex() == -1){
+                if (JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBIdCategory.getSelectedIndex() == -1){
                     JOptionPane.showMessageDialog(JPProductScreenRegister, "Please fullfill all the options");
                     return;
                 }
 
                 ProductModel user = new ProductModel();
 
-                user.setName(TFName.getText());
-                user.setCategoryId(CBIdCategory.getSelectedIndex());
-                user.setPrice(TFPrice.getText());
+                user.setName(JTFName.getText());
+                user.setCategoryId(JCBIdCategory.getSelectedIndex());
+                user.setPrice(JTFPrice.getText());
 
                 try {
                     daoProduct.save(user);
