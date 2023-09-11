@@ -1,14 +1,17 @@
 package br.com.tchefoods.view;
 
 import br.com.tchefoods.dao.UserDAO;
+import br.com.tchefoods.model.TableModel;
 import br.com.tchefoods.model.UserModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.Book;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserScreenEdit {
     private JPanel UserPanel;
@@ -33,6 +36,7 @@ public class UserScreenEdit {
     private JTextField JTFId;
     private JLabel JLId;
     private JPanel UserScreenEdit;
+    private JTable JTUser;
 
     ButtonGroup btngroup = new ButtonGroup();
 
@@ -47,7 +51,9 @@ public class UserScreenEdit {
         btngroup.clearSelection();
     }
 
-    public UserScreenEdit() {
+    public UserScreenEdit() throws SQLException, ClassNotFoundException {
+
+        this.JTUser.setModel(new TableModel(getUsers()));
 
         btngroup.add(JRBFeminine);
         btngroup.add(JRBMasculine);
@@ -99,9 +105,26 @@ public class UserScreenEdit {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("UserScreenEdit");
-        frame.setContentPane(new UserScreenEdit().UserScreenEdit);
+        try {
+            frame.setContentPane(new UserScreenEdit().UserScreenEdit);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {
+        UserDAO dao = new UserDAO();
+        return dao.selectAll();
+    }
+
+
+
+    private void createUIComponents() throws SQLException, ClassNotFoundException {
+        this.JTUser.setModel(new TableModel(getUsers()));
     }
 }
