@@ -5,6 +5,8 @@ import br.com.tchefoods.model.TableModel;
 import br.com.tchefoods.model.UserModel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.Book;
@@ -12,6 +14,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
+
+import static sun.tools.jconsole.inspector.XDataViewer.dispose;
 
 public class UserScreenEdit {
     private JPanel UserPanel;
@@ -52,8 +56,6 @@ public class UserScreenEdit {
     }
 
     public UserScreenEdit() throws SQLException, ClassNotFoundException {
-
-        this.JTUser.setModel(new TableModel(getUsers()));
 
         btngroup.add(JRBFeminine);
         btngroup.add(JRBMasculine);
@@ -101,6 +103,33 @@ public class UserScreenEdit {
                 clear();
             }
         });
+
+        this.JTUser.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                UserModel user = new UserModel();
+                UserModel selected = new UserModel();
+                int row = JTUser.getSelectedRow();
+                if(row >= 0){
+                    user.setId((int)JTUser.getModel().getValueAt(row, 0));
+                    UserDAO daoTable = new UserDAO()
+
+                    try {
+                        selected = daoTable.selectById(user);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (ClassNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JTFName.setText(selected.getName());
+                    JTFSecondName.setText(selected.getSurname());
+                    JTFEmail.setText(selected.getEmail());
+                    JTFAdress.setText(selected.getAdress());
+                    JTFCellphoneNumber.setText(selected.getCellphone());
+                    dispose();
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -121,8 +150,6 @@ public class UserScreenEdit {
         UserDAO dao = new UserDAO();
         return dao.selectAll();
     }
-
-
 
     private void createUIComponents() throws SQLException, ClassNotFoundException {
         this.JTUser.setModel(new TableModel(getUsers()));
