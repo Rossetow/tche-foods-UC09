@@ -7,12 +7,14 @@ import br.com.tchefoods.model.UserModel;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.Book;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -54,11 +56,18 @@ public class UserScreenEdit {
         btngroup.clearSelection();
     }
 
-    public UserScreenEdit() throws SQLException, ClassNotFoundException {
-
+    public UserScreenEdit(){
         btngroup.add(JRBFeminine);
         btngroup.add(JRBMasculine);
         btngroup.add(JRBOthers);
+        try {
+            this.initMyTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         JBSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,7 +98,6 @@ public class UserScreenEdit {
                 } else {
                     user.setGender("Other");
                 }
-
                 try {
                     daoUser.edit(user);
                 } catch (SQLException ex) {
@@ -100,6 +108,7 @@ public class UserScreenEdit {
 
                 JOptionPane.showMessageDialog(UserPanel, "User edited in the database successfully!");
                 clear();
+
             }
         });
 
@@ -131,18 +140,8 @@ public class UserScreenEdit {
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("UserScreenEdit");
-        try {
-            frame.setContentPane(new UserScreenEdit().UserScreenEdit);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+    private void initMyTable() throws SQLException, ClassNotFoundException {
+        this.JTUser.setModel(new TableModel(getUsers()));
     }
 
     public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {
@@ -150,7 +149,12 @@ public class UserScreenEdit {
         return dao.selectAll();
     }
 
-    private void createUIComponents() throws SQLException, ClassNotFoundException {
-        this.JTUser.setModel(new TableModel(getUsers()));
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("UserScreenEdit");
+        frame.setContentPane(new UserScreenEdit().UserScreenEdit);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }
