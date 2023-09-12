@@ -71,11 +71,15 @@ public class UserScreenDelete {
                         return;
                     }
 
+                    if(JOptionPane.showConfirmDialog(UserPanel, "Are you sure you want to delete this user from the database?") == 1){
+                        JOptionPane.showMessageDialog(UserPanel, "Canceled!");
+                        return;
+                    }
+
                     UserModel user = new UserModel();
                     user.setId(Integer.parseInt(JTFId.getText()));
                     user.setName(JTFName.getText());
                     user.setSurname(JTFSecondName.getText());
-
                     user.setEmail(JTFEmail.getText());
                     user.setCellphone(JTFCellphoneNumber.getText());
                     user.setAdress(JTFAdress.getText());
@@ -94,11 +98,6 @@ public class UserScreenDelete {
                     } catch (ClassNotFoundException ex) {
                         throw new RuntimeException(ex);
                     }
-                    JTFName.setEditable(false);
-                    JTFSecondName.setEditable(false);
-                    JTFEmail.setEditable(false);
-                    JTFAdress.setEditable(false);
-                    JTFCellphoneNumber.setEditable(false);
                     JOptionPane.showMessageDialog(UserPanel, "User deleted from the database successfully!");
                     clear();
                     try {

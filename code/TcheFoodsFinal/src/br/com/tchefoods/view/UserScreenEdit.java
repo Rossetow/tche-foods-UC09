@@ -9,8 +9,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,7 +37,7 @@ public class UserScreenEdit {
     private JLabel JLId;
     private JPanel UserScreenEdit;
     private JTable JTUser;
-    private JButton findByIdButton;
+    private JButton findByNameButton;
 
     ButtonGroup btngroup = new ButtonGroup();
 
@@ -159,7 +157,7 @@ public class UserScreenEdit {
                 }
             }
         });
-        findByIdButton.addActionListener(new ActionListener() {
+        findByNameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UserModel selected = new UserModel();
