@@ -3,8 +3,17 @@ package br.com.tchefoods.model;
 public class ProductModel {
     private int id;
     private String name;
-    private int categoryId;
+
+    private String categoryId;
     private float price;
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public int getId() {
         return id;
@@ -30,11 +39,5 @@ public class ProductModel {
         this.price = price;
     }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
 }

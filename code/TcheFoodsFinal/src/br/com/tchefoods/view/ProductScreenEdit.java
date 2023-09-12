@@ -48,6 +48,9 @@ public class ProductScreenEdit {
                     throw new RuntimeException(ex);
                 }
 
+                JTFName.setEditable(false);
+                JTFPrice.setEditable(false);
+                JCBCaterory.setEditable(false);
                 JOptionPane.showMessageDialog(JPProductScreenEdit, "User edited in the database successfully!");
             }
         });
