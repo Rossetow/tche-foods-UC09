@@ -85,7 +85,6 @@ public class UserScreenEdit {
                 user.setId(Integer.parseInt(JTFId.getText()));
                 user.setName(JTFName.getText());
                 user.setSurname(JTFSecondName.getText());
-
                 user.setEmail(JTFEmail.getText());
                 user.setCellphone(JTFCellphoneNumber.getText());
                 user.setAdress(JTFAdress.getText());
@@ -104,7 +103,6 @@ public class UserScreenEdit {
                 } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
-                JTFName.setEditable(false);
                 JTFSecondName.setEditable(false);
                 JTFEmail.setEditable(false);
                 JTFAdress.setEditable(false);

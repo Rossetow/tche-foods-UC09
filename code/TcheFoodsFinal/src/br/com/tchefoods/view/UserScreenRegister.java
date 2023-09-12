@@ -44,6 +44,10 @@ public class UserScreenRegister {
         btngroup.clearSelection();
     }
 
+    public JPanel getUserPanel() {
+        return UserPanel;
+    }
+
     public UserScreenRegister() {
 
         btngroup.add(JRBFeminine);
@@ -91,6 +95,8 @@ public class UserScreenRegister {
                 clear();
             }
         });
+
+
     }
 
 

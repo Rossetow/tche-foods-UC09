@@ -55,7 +55,7 @@
               </grid>
             </constraints>
             <properties>
-              <editable value="false"/>
+              <editable value="true"/>
             </properties>
           </component>
           <component id="74fa7" class="javax.swing.JTextField" binding="JTFSecondName">
