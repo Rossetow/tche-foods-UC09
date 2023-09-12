@@ -37,6 +37,7 @@ public class UserScreenDelete {
     private JButton findByIdButton;
     private JPanel UserScreenDelete;
     private JTable JTUser;
+    private JButton JBFindByName;
 
     ButtonGroup btngroup = new ButtonGroup();
 
@@ -173,7 +174,38 @@ public class UserScreenDelete {
                     }
                 }
             });
-        }
+        JBFindByName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserModel selected = new UserModel();
+                selected.setName(JTFName.getText());
+                UserDAO dao = new UserDAO();
+
+                try {
+                    selected = dao.selectByName(selected);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+
+                JTFId.setText(""+selected.getId());
+                JTFName.setText(selected.getName());
+                JTFSecondName.setText(selected.getSurname());
+                JTFEmail.setText(selected.getEmail());
+                JTFAdress.setText(selected.getAdress());
+                JTFCellphoneNumber.setText(selected.getCellphone());
+                if (selected.getGender().equals("Masculine")){
+                    JRBMasculine.setSelected(true);
+                } else if (selected.getGender().equals("Feminine")){
+                    JRBFeminine.setSelected(true);
+                } else {
+                    JRBOthers.setSelected(true);
+                }
+            }
+        });
+    }
 
         private void initMyTable() throws SQLException, ClassNotFoundException {
             this.JTUser.setModel(new TableModel(getUsers()));

@@ -55,7 +55,7 @@
               </grid>
             </constraints>
             <properties>
-              <editable value="false"/>
+              <editable value="true"/>
             </properties>
           </component>
           <component id="bba05" class="javax.swing.JTextField" binding="JTFSecondName">
@@ -170,7 +170,15 @@
             </constraints>
             <properties/>
           </component>
-          <component id="77d94" class="javax.swing.JButton" binding="findByNameButton">
+          <component id="77d94" class="javax.swing.JButton" binding="findByIdButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Find by Id"/>
+            </properties>
+          </component>
+          <component id="226bd" class="javax.swing.JButton" binding="JBFindByName">
             <constraints>
               <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

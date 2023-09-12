@@ -9,6 +9,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -37,7 +39,8 @@ public class UserScreenEdit {
     private JLabel JLId;
     private JPanel UserScreenEdit;
     private JTable JTUser;
-    private JButton findByNameButton;
+    private JButton findByIdButton;
+    private JButton JBFindByName;
 
     ButtonGroup btngroup = new ButtonGroup();
 
@@ -157,7 +160,7 @@ public class UserScreenEdit {
                 }
             }
         });
-        findByNameButton.addActionListener(new ActionListener() {
+        findByIdButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UserModel selected = new UserModel();
@@ -190,6 +193,42 @@ public class UserScreenEdit {
                 JTFAdress.setEditable(true);
                 JTFCellphoneNumber.setEditable(true);
                 }
+        });
+        JBFindByName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserModel selected = new UserModel();
+                selected.setName(JTFName.getText());
+                UserDAO dao = new UserDAO();
+
+                try {
+                    selected = dao.selectByName(selected);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+
+                JTFId.setText(""+selected.getId());
+                JTFName.setText(selected.getName());
+                JTFSecondName.setText(selected.getSurname());
+                JTFEmail.setText(selected.getEmail());
+                JTFAdress.setText(selected.getAdress());
+                JTFCellphoneNumber.setText(selected.getCellphone());
+                if (selected.getGender().equals("Masculine")){
+                    JRBMasculine.setSelected(true);
+                } else if (selected.getGender().equals("Feminine")){
+                    JRBFeminine.setSelected(true);
+                } else {
+                    JRBOthers.setSelected(true);
+                }
+                JTFName.setEditable(true);
+                JTFSecondName.setEditable(true);
+                JTFEmail.setEditable(true);
+                JTFAdress.setEditable(true);
+                JTFCellphoneNumber.setEditable(true);
+            }
         });
     }
 
