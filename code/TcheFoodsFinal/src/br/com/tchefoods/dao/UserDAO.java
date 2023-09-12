@@ -34,15 +34,14 @@ public class UserDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("UPDATE tb_user SET user_name = ?, user_surname = ?, user_email = ?, user_password = ?, user_cellphone = ?, user_adress = ?, user_gender = ? WHERE user_id = ?");
+        stmt = conn.prepareStatement("UPDATE tb_user SET user_name = ?, user_surname = ?, user_email = ?, user_cellphone = ?, user_adress = ?, user_gender = ? WHERE user_id = ?");
         stmt.setString(1, user.getName());
         stmt.setString(2, user.getSurname());
         stmt.setString(3, user.getEmail());
-        stmt.setBytes(4, user.getPassword());
-        stmt.setString(5, user.getCellphone());
-        stmt.setString(6, user.getAdress());
-        stmt.setString(7, user.getGender());
-        stmt.setInt(8,user.getId());
+        stmt.setString(4, user.getCellphone());
+        stmt.setString(5, user.getAdress());
+        stmt.setString(6, user.getGender());
+        stmt.setInt(7, user.getId());
         stmt.executeUpdate();
     }
 
@@ -77,6 +76,7 @@ public class UserDAO {
         stmt = conn.prepareStatement("SELECT user_id, user_name, user_surname, user_email, user_cellphone, user_adress, user_gender FROM tb_user WHERE user_id = ?");
         stmt.setInt(1, user.getId());
         ResultSet rs = stmt.executeQuery();
+        rs.next();
 
         UserModel addUser = new UserModel();
         addUser.setId(rs.getInt("user_id"));

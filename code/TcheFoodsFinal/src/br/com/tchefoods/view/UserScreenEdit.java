@@ -7,15 +7,13 @@ import br.com.tchefoods.model.UserModel;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.print.Book;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class UserScreenEdit {
@@ -24,7 +22,6 @@ public class UserScreenEdit {
     private JLabel JLName;
     private JLabel JLSecondName;
     private JLabel JLEmail;
-    private JLabel JLPassword;
     private JTextField JTFName;
     private JTextField JTFSecondName;
     private JTextField JTFEmail;
@@ -42,6 +39,7 @@ public class UserScreenEdit {
     private JLabel JLId;
     private JPanel UserScreenEdit;
     private JTable JTUser;
+    private JButton findByIdButton;
 
     ButtonGroup btngroup = new ButtonGroup();
 
@@ -51,7 +49,6 @@ public class UserScreenEdit {
         JTFSecondName.setText("");
         JTFEmail.setText("");
         JTFAdress.setText("");
-        JTFPassword.setText("");
         JTFCellphoneNumber.setText("");
         btngroup.clearSelection();
     }
@@ -72,7 +69,13 @@ public class UserScreenEdit {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UserDAO daoUser = new UserDAO();
-                if (JTFId.getText().isEmpty()||JTFName.getText().isEmpty() || JTFSecondName.getText().isEmpty() || JTFEmail.getText().isEmpty() || JTFPassword.getText().isEmpty() || JTFAdress.getText().isEmpty() || JTFCellphoneNumber.getText().isEmpty() || btngroup.getSelection() == null) {
+
+                JTFName.setEditable(true);
+                JTFSecondName.setEditable(true);
+                JTFEmail.setEditable(true);
+                JTFAdress.setEditable(true);
+                JTFCellphoneNumber.setEditable(true);
+                if (JTFId.getText().isEmpty()||JTFName.getText().isEmpty() || JTFSecondName.getText().isEmpty() || JTFEmail.getText().isEmpty() || JTFAdress.getText().isEmpty() || JTFCellphoneNumber.getText().isEmpty() || btngroup.getSelection() == null) {
                     JOptionPane.showMessageDialog(UserPanel, "Please fullfill all the options");
                     return;
                 }
@@ -81,13 +84,7 @@ public class UserScreenEdit {
                 user.setId(Integer.parseInt(JTFId.getText()));
                 user.setName(JTFName.getText());
                 user.setSurname(JTFSecondName.getText());
-                try {
-                    user.setPassword(JTFPassword.getText());
-                } catch (NoSuchAlgorithmException ex) {
-                    throw new RuntimeException(ex);
-                } catch (UnsupportedEncodingException ex) {
-                    throw new RuntimeException(ex);
-                }
+
                 user.setEmail(JTFEmail.getText());
                 user.setCellphone(JTFCellphoneNumber.getText());
                 user.setAdress(JTFAdress.getText());
@@ -98,6 +95,7 @@ public class UserScreenEdit {
                 } else {
                     user.setGender("Other");
                 }
+                user.setId(Integer.parseInt(JTFId.getText()));
                 try {
                     daoUser.edit(user);
                 } catch (SQLException ex) {
@@ -105,9 +103,20 @@ public class UserScreenEdit {
                 } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
-
+                JTFName.setEditable(false);
+                JTFSecondName.setEditable(false);
+                JTFEmail.setEditable(false);
+                JTFAdress.setEditable(false);
+                JTFCellphoneNumber.setEditable(false);
                 JOptionPane.showMessageDialog(UserPanel, "User edited in the database successfully!");
                 clear();
+                try {
+                    initMyTable();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
 
             }
         });
@@ -115,8 +124,13 @@ public class UserScreenEdit {
         this.JTUser.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                JTFName.setEditable(true);
+                JTFSecondName.setEditable(true);
+                JTFEmail.setEditable(true);
+                JTFAdress.setEditable(true);
+                JTFCellphoneNumber.setEditable(true);
                 UserModel user = new UserModel();
-                UserModel selected = new UserModel();
+                UserModel selected;
                 int row = JTUser.getSelectedRow();
                 if(row >= 0){
                     user.setId((int)JTUser.getModel().getValueAt(row, 0));
@@ -129,14 +143,55 @@ public class UserScreenEdit {
                     } catch (ClassNotFoundException ex) {
                         throw new RuntimeException(ex);
                     }
+                    JTFId.setText(""+selected.getId());
                     JTFName.setText(selected.getName());
                     JTFSecondName.setText(selected.getSurname());
                     JTFEmail.setText(selected.getEmail());
                     JTFAdress.setText(selected.getAdress());
                     JTFCellphoneNumber.setText(selected.getCellphone());
-
+                    if (selected.getGender().equals("Masculine")){
+                        JRBMasculine.setSelected(true);
+                    } else if (selected.getGender().equals("Feminine")){
+                        JRBFeminine.setSelected(true);
+                    } else {
+                        JRBOthers.setSelected(true);
+                    }
                 }
             }
+        });
+        findByIdButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserModel selected = new UserModel();
+                selected.setId(Integer.parseInt(JTFId.getText()));
+                UserDAO dao = new UserDAO();
+
+                try {
+                    selected = dao.selectById(selected);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                    JTFId.setText(""+selected.getId());
+                    JTFName.setText(selected.getName());
+                    JTFSecondName.setText(selected.getSurname());
+                    JTFEmail.setText(selected.getEmail());
+                    JTFAdress.setText(selected.getAdress());
+                    JTFCellphoneNumber.setText(selected.getCellphone());
+                    if (selected.getGender().equals("Masculine")){
+                        JRBMasculine.setSelected(true);
+                    } else if (selected.getGender().equals("Feminine")){
+                        JRBFeminine.setSelected(true);
+                    } else {
+                        JRBOthers.setSelected(true);
+                    }
+                JTFName.setEditable(true);
+                JTFSecondName.setEditable(true);
+                JTFEmail.setEditable(true);
+                JTFAdress.setEditable(true);
+                JTFCellphoneNumber.setEditable(true);
+                }
         });
     }
 
