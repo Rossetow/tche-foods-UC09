@@ -89,13 +89,36 @@ public class UserDAO {
         return addUser;
     }
 
+    public UserModel selectByName (UserModel user) throws SQLException, ClassNotFoundException {
+        ConnectionMysql conexaoMysql = new ConnectionMysql();
+        Connection conn = conexaoMysql.getConection();
+        PreparedStatement stmt = null;
+        user.setName("%" + user.getName() + "%");
+        stmt = conn.prepareStatement("SELECT user_id, user_name, user_surname, user_email, user_cellphone, user_adress, user_gender FROM tb_user WHERE user_name LIKE ?" );
+        stmt.setString(1, user.getName());
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+
+        UserModel addUser = new UserModel();
+        addUser.setId(rs.getInt("user_id"));
+        addUser.setName(rs.getString("user_name"));
+        addUser.setSurname(rs.getString("user_surname"));
+        addUser.setEmail(rs.getString("user_email"));
+        addUser.setCellphone(rs.getString("user_cellphone"));
+        addUser.setAdress(rs.getString("user_adress"));
+        addUser.setGender(rs.getString("user_gender"));
+        return addUser;
+    }
+
     public void delete(UserModel user) throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("DELETE FROM tb_user WHERE id = ?");
+        stmt = conn.prepareStatement("DELETE FROM tb_user WHERE user_id = ?");
         stmt.setInt(1, user.getId());
-        ResultSet rs = stmt.executeQuery();
+        stmt.executeUpdate();
     }
+
+
 }
