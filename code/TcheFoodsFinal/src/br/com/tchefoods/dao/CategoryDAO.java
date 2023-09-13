@@ -33,7 +33,7 @@ public class CategoryDAO {
         stmt.setInt(2, category.getId());
     }
 
-    public ArrayList<CategoryModel> selectAll (CategoryModel category) throws SQLException, ClassNotFoundException {
+    public ArrayList<CategoryModel> selectAll () throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
@@ -44,8 +44,8 @@ public class CategoryDAO {
 
         while(rs.next()){
             CategoryModel addCategory = new CategoryModel();
-            category.setId(rs.getInt("category_id"));
-            category.setDesc(rs.getString("category_desc"));
+            addCategory.setId(rs.getInt("category_id"));
+            addCategory.setDesc(rs.getString("category_desc"));
             output.add(addCategory);
         }
         return (output);

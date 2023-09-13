@@ -39,7 +39,7 @@ public class ProductScreenDelete {
                 user.setPrice(JTFPrice.getText());
 
                 try {
-                    daoProduct.edit(user);
+                    daoProduct.delete(user);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {

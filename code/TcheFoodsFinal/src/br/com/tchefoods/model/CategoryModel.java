@@ -19,4 +19,9 @@ public class CategoryModel {
     public String getDesc() {
         return desc;
     }
+
+    @Override
+    public String toString() {
+        return this.desc;
+    }
 }
