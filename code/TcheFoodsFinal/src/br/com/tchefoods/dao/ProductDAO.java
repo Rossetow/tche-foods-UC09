@@ -2,6 +2,7 @@ package br.com.tchefoods.dao;
 
 import br.com.tchefoods.infra.ConnectionMysql;
 import br.com.tchefoods.model.ProductModel;
+import br.com.tchefoods.model.ProductTableModel;
 import br.com.tchefoods.model.UserModel;
 
 import java.sql.Connection;
@@ -19,7 +20,7 @@ public class ProductDAO {
         con = connectionMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = con.prepareStatement("INSERT INTO user(name ,price, categoryId ) VALUES (?,?,?)");
+        stmt = con.prepareStatement("INSERT INTO tb_product(product_name ,product_price, product_category_id ) VALUES (?,?,?)");
 
         stmt.setString(1, product.getName());
         stmt.setFloat(2, product.getPrice());
@@ -32,7 +33,7 @@ public class ProductDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("UPDATE tb_user SET user_name = ?, set_price = ?, set_categoryId = ? WHERE user_id = ?");
+        stmt = conn.prepareStatement("UPDATE tb_product SET product_name = ?, product_price = ?, product_category_id = ? WHERE product_id = ?");
         stmt.setString(1, product.getName());
         stmt.setInt(2, product.getCategoryId());
         stmt.setFloat(3, product.getPrice());
@@ -45,8 +46,70 @@ public class ProductDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("DELETE FROM tb_user WHERE id = ?");
+        stmt = conn.prepareStatement("DELETE FROM tb_product WHERE product_id = ?");
         stmt.setInt(1, product.getId());
         ResultSet rs = stmt.executeQuery();
+    }
+
+    public ArrayList<ProductModel> selectAll(ProductModel product) throws SQLException, ClassNotFoundException {
+        ConnectionMysql conexaoMysql = new ConnectionMysql();
+        Connection conn = conexaoMysql.getConection();
+        PreparedStatement stmt = null;
+
+        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.cateogory_desc FROM tb_product as p" +
+                "INNER JOIN tb_category as c on c.category_id = p.product_category_id;");
+        ResultSet rs = stmt.executeQuery();
+
+        ArrayList<ProductModel> output = new ArrayList<>();
+        while(rs.next()){
+            ProductModel addProduct = new ProductModel();
+            addProduct.setId(rs.getInt("product_id"));
+            addProduct.setName(rs.getString("product_name"));
+            addProduct.setPrice(rs.getFloat("product_price"));
+            addProduct.setCategoryDesc(rs.getString("c.category_desc"));
+            output.add(addProduct);
+        }
+        return (output);
+    }
+
+    public ProductModel selectById(ProductModel product) throws SQLException, ClassNotFoundException {
+        ConnectionMysql conexaoMysql = new ConnectionMysql();
+        Connection conn = conexaoMysql.getConection();
+        PreparedStatement stmt = null;
+
+        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.cateogory_desc FROM tb_product as p" +
+                "INNER JOIN tb_category as c on c.category_id = p.product_category_id" +
+                "WHERE product_id = ?;");
+        stmt.setInt(1, product.getId());
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+
+        ProductModel addProduct = new ProductModel();
+        addProduct.setId(rs.getInt("product_id"));
+        addProduct.setName(rs.getString("product_name"));
+        addProduct.setPrice(rs.getFloat("product_price"));
+        addProduct.setCategoryDesc(rs.getString("c.category_desc"));
+        return addProduct;
+    }
+
+    public ProductModel selectByName(ProductModel product) throws SQLException, ClassNotFoundException {
+        ConnectionMysql conexaoMysql = new ConnectionMysql();
+        Connection conn = conexaoMysql.getConection();
+        PreparedStatement stmt = null;
+        product.setName("%" + product.getName()+"%");
+
+        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.cateogory_desc FROM tb_product as p" +
+                "INNER JOIN tb_category as c on c.category_id = p.product_category_id" +
+                "WHERE product_name = ?;");
+        stmt.setString(1, product.getName());
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+
+        ProductModel addProduct = new ProductModel();
+        addProduct.setId(rs.getInt("product_id"));
+        addProduct.setName(rs.getString("product_name"));
+        addProduct.setPrice(rs.getFloat("product_price"));
+        addProduct.setCategoryDesc(rs.getString("c.category_desc"));
+        return addProduct;
     }
 }

@@ -7,6 +7,20 @@ public class ProductModel {
     private int categoryId;
     private float price;
 
+    private String categoryDesc;
+
+    public void setCategoryDesc(String categoryDesc) {
+        this.categoryDesc = categoryDesc;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getCategoryDesc() {
+        return categoryDesc;
+    }
+
     public int getCategoryId() {
         return categoryId;
     }
