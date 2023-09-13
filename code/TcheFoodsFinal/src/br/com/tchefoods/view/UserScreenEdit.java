@@ -55,6 +55,7 @@ public class UserScreenEdit {
     }
 
     public UserScreenEdit(){
+
         btngroup.add(JRBFeminine);
         btngroup.add(JRBMasculine);
         btngroup.add(JRBOthers);
@@ -65,6 +66,7 @@ public class UserScreenEdit {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
 
         JBSubmit.addActionListener(new ActionListener() {
             @Override
@@ -232,6 +234,7 @@ public class UserScreenEdit {
 
     private void initMyTable() throws SQLException, ClassNotFoundException {
         this.JTUser.setModel(new TableModel(getUsers()));
+
     }
 
     public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {

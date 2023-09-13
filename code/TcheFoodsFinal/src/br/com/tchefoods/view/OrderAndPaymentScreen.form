@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="1f970" class="javax.swing.JTextField" binding="TFProductName">
+      <component id="1f970" class="javax.swing.JTextField" binding="JTFProductName">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -21,7 +21,7 @@
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Adicionar"/>
+          <text value="Add"/>
         </properties>
       </component>
       <component id="10953" class="javax.swing.JLabel" binding="JLProductName">
@@ -29,7 +29,7 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Produto"/>
+          <text value="Product"/>
         </properties>
       </component>
       <component id="387b4" class="javax.swing.JLabel" binding="JLQuantity">
@@ -37,7 +37,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Quantidade"/>
+          <text value="Amount"/>
         </properties>
       </component>
       <component id="8aac1" class="javax.swing.JTable" binding="TableProducts">
@@ -56,18 +56,18 @@
         </constraints>
         <properties/>
       </component>
-      <component id="821b0" class="javax.swing.JComboBox" binding="CBPaymentMethod">
+      <component id="821b0" class="javax.swing.JComboBox" binding="JCBPaymentMethod">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
-      <component id="95e73" class="javax.swing.JButton" binding="ButtonBuy">
+      <component id="95e73" class="javax.swing.JButton" binding="JBFinish">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Comprar"/>
+          <text value="Finish"/>
         </properties>
       </component>
       <component id="c4e09" class="javax.swing.JLabel" binding="JLProductPriceTotal">
@@ -86,7 +86,7 @@
           <text value="PAGAMENTO E PEDIDO"/>
         </properties>
       </component>
-      <component id="e81b0" class="javax.swing.JSpinner" binding="SPQuantity">
+      <component id="e81b0" class="javax.swing.JSpinner" binding="JSPQuantity">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
