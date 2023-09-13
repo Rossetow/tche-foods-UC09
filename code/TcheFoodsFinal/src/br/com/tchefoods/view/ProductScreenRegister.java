@@ -24,7 +24,7 @@ public class ProductScreenRegister {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBIdCategory.getSelectedIndex() == -1){
+                if (JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBIdCategory.getText().isEmpty()){
                     JOptionPane.showMessageDialog(JPProductScreenRegister, "Please fullfill all the options");
                     return;
                 }
@@ -32,7 +32,7 @@ public class ProductScreenRegister {
                 ProductModel user = new ProductModel();
 
                 user.setName(JTFName.getText());
-                user.setCategoryId(JCBIdCategory.getSelectedIndex());
+                user.setCategoryId(JCBIdCategory.getText());
                 user.setPrice(JTFPrice.getText());
 
                 try {
