@@ -1,10 +1,9 @@
 package br.com.tchefoods.model;
 
 import javax.swing.table.AbstractTableModel;
-import java.awt.print.Book;
 import java.util.List;
 
-public class TableModel extends AbstractTableModel {
+public class UserTableModel extends AbstractTableModel {
 
     private List<UserModel> itens;
 
@@ -36,7 +35,7 @@ public class TableModel extends AbstractTableModel {
             false
     };
 
-    public TableModel(List<UserModel> input) {
+    public UserTableModel(List<UserModel> input) {
         this.itens=input;
     }
 

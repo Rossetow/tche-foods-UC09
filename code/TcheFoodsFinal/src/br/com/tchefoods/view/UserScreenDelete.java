@@ -1,7 +1,7 @@
 package br.com.tchefoods.view;
 
 import br.com.tchefoods.dao.UserDAO;
-import br.com.tchefoods.model.TableModel;
+import br.com.tchefoods.model.UserTableModel;
 import br.com.tchefoods.model.UserModel;
 
 import javax.swing.*;
@@ -208,7 +208,7 @@ public class UserScreenDelete {
     }
 
         private void initMyTable() throws SQLException, ClassNotFoundException {
-            this.JTUser.setModel(new TableModel(getUsers()));
+            this.JTUser.setModel(new UserTableModel(getUsers()));
         }
 
         public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {

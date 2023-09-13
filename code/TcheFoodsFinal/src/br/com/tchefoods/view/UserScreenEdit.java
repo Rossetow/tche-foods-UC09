@@ -1,7 +1,7 @@
 package br.com.tchefoods.view;
 
 import br.com.tchefoods.dao.UserDAO;
-import br.com.tchefoods.model.TableModel;
+import br.com.tchefoods.model.UserTableModel;
 import br.com.tchefoods.model.UserModel;
 
 import javax.swing.*;
@@ -9,8 +9,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -233,7 +231,7 @@ public class UserScreenEdit {
     }
 
     private void initMyTable() throws SQLException, ClassNotFoundException {
-        this.JTUser.setModel(new TableModel(getUsers()));
+        this.JTUser.setModel(new UserTableModel(getUsers()));
 
     }
 

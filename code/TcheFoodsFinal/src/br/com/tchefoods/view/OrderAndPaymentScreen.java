@@ -6,7 +6,7 @@ public class OrderAndPaymentScreen {
     private JPanel PanelOrder;
     private JTextField JTFProductName;
     private JButton ButtonAdd;
-    private JTable TableProducts;
+    private JTable JTProducts;
     private JTextField TFTtotalPrice;
     private JComboBox JCBPaymentMethod;
     private JButton JBFinish;
