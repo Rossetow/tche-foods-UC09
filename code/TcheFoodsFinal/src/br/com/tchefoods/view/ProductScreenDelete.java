@@ -35,7 +35,7 @@ public class ProductScreenDelete {
 
                 user.setId(Integer.parseInt(JTFId.getText()));
                 user.setName(JTFName.getText());
-                user.setCategoryId(JCBCategory.getText());
+                user.setCategoryId(JCBCategory.getSelectedIndex());
                 user.setPrice(JTFPrice.getText());
 
                 try {

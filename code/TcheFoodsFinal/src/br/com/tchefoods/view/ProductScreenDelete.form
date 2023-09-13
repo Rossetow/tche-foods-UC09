@@ -10,7 +10,7 @@
     <children>
       <component id="f6d97" class="javax.swing.JLabel" binding="JLDeleteProducts">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Deletar o Produto"/>
@@ -56,7 +56,7 @@
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Enviar"/>
+          <text value="Delete"/>
         </properties>
       </component>
       <component id="2fb85" class="javax.swing.JLabel" binding="JLId">
@@ -72,7 +72,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Nome :"/>
+          <text value="Name :"/>
         </properties>
       </component>
       <component id="4176f" class="javax.swing.JLabel" binding="JLCategory">
@@ -80,7 +80,7 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Categoria :"/>
+          <text value="Category :"/>
         </properties>
       </component>
       <component id="68288" class="javax.swing.JLabel" binding="JLPrice">
@@ -88,7 +88,7 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Preço :"/>
+          <text value="Price :"/>
         </properties>
       </component>
     </children>

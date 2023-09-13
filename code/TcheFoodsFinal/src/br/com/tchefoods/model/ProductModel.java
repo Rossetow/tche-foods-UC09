@@ -4,14 +4,14 @@ public class ProductModel {
     private int id;
     private String name;
 
-    private String categoryId;
+    private int categoryId;
     private float price;
 
-    public String getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(String categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 

@@ -15,7 +15,7 @@
         <properties>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
-          <text value="Relatório Pedidos"/>
+          <text value="Report Order"/>
         </properties>
       </component>
       <component id="7eeca" class="javax.swing.JLabel" binding="JLTitle2">
