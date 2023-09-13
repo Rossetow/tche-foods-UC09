@@ -1,12 +1,15 @@
 package br.com.tchefoods.view;
 
+import br.com.tchefoods.dao.CategoryDAO;
 import br.com.tchefoods.dao.ProductDAO;
+import br.com.tchefoods.model.CategoryModel;
 import br.com.tchefoods.model.ProductModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProductScreenRegister {
     private JPanel JPProductScreenRegister;
@@ -19,7 +22,21 @@ public class ProductScreenRegister {
     private JButton JBSubmit;
     private JLabel JLProductScreen;
 
-    public ProductScreenRegister() {
+
+    public ProductScreenRegister()  {
+        CategoryDAO categoryDAO = new CategoryDAO();
+        try {
+            ArrayList<CategoryModel> listaCategorias = categoryDAO.selectAll();
+            for (CategoryModel categoryModel : listaCategorias){
+                JCBIdCategory.addItem((categoryModel));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
         JBSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
