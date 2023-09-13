@@ -9,8 +9,8 @@ public class ProductTableModel {
     private String[] columns = new String[] {
             "ID",
             "Name",
-            "Category",
-            "Price"
+            "Price",
+            "Category"
     };
     private Class[] types = new Class [] {
             java.lang.Integer.class,
@@ -33,7 +33,7 @@ public class ProductTableModel {
         return itens.size();
     }
     public int getColumnCount() {
-        return 7;
+        return 4;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -41,8 +41,9 @@ public class ProductTableModel {
         switch(columnIndex){
             case 0: return item.getId();
             case 1: return item.getName();
-            case 2: return item.getCategoryId();
-            case 3: return item.getPrice();
+            case 2: return item.getPrice();
+            case 3: return item.getCategoryId();
+
         }
         return null;
     }

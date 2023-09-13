@@ -4,17 +4,17 @@ import javax.swing.*;
 
 public class OrderAndPaymentScreen {
     private JPanel PanelOrder;
-    private JTextField TFProductName;
+    private JTextField JTFProductName;
     private JButton ButtonAdd;
-    private JTable TableProducts;
+    private JTable JTProducts;
     private JTextField TFTtotalPrice;
-    private JComboBox CBPaymentMethod;
-    private JButton ButtonBuy;
+    private JComboBox JCBPaymentMethod;
+    private JButton JBFinish;
     private JLabel JLTitle;
     private JLabel JLProductName;
     private JLabel JLQuantity;
     private JLabel JLProductPriceTotal;
-    private JSpinner SPQuantity;
+    private JSpinner JSPQuantity;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("OrderAndPaymentScreen");
