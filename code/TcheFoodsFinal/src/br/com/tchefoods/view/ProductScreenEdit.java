@@ -19,6 +19,11 @@ public class ProductScreenEdit {
     private JPanel JPProductScreenEdit;
     private JLabel JLEdicaoProduto;
     private JLabel JLNameProduct;
+
+    public JPanel getJPProductScreenEdit() {
+        return JPProductScreenEdit;
+    }
+
     private JLabel JLIdCategoryProduct;
     private JLabel JLPriceProduct;
     private JLabel JLId;

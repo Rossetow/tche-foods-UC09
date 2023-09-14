@@ -16,6 +16,10 @@ public class OrderAndPaymentScreen {
     private JLabel JLProductPriceTotal;
     private JSpinner JSPQuantity;
 
+    public JPanel getPanelOrder() {
+        return PanelOrder;
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("OrderAndPaymentScreen");
         frame.setContentPane(new OrderAndPaymentScreen().PanelOrder);

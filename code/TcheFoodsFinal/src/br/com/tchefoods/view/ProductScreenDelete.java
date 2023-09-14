@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class ProductScreenDelete {
+    public JPanel getJPProductScreenDelete() {
+        return JPProductScreenDelete;
+    }
+
     private JTextField JTFId;
     private JTextField JTFName;
     private JComboBox JCBCategory;

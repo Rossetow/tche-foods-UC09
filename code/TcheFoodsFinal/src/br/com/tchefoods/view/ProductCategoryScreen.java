@@ -5,6 +5,11 @@ import javax.swing.*;
 public class ProductCategoryScreen {
     private JTextField TFProductCategory;
     private JLabel JLProductCategory;
+
+    public JPanel getJPProductCategory() {
+        return JPProductCategory;
+    }
+
     private JLabel JLDescription;
     private JButton BSubmit;
     private JPanel JPProductCategory;
