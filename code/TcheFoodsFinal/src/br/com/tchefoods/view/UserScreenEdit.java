@@ -199,6 +199,8 @@ public class UserScreenEdit {
         JBFindByName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+
                 UserModel selected = new UserModel();
                 selected.setName(JTFName.getText());
                 UserDAO dao = new UserDAO();
