@@ -5,16 +5,16 @@ public class ProductModel {
     private String name;
 
     private int categoryId;
+
     private float price;
 
     private String categoryDesc;
 
-    public void setCategoryDesc(String categoryDesc) {
-        this.categoryDesc = categoryDesc;
+    public void setPrice(float price) {this.price = price;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setCategoryDesc(String categoryDesc) {
+        this.categoryDesc = categoryDesc;
     }
 
     public String getCategoryDesc() {
@@ -49,9 +49,6 @@ public class ProductModel {
         return price;
     }
 
-    public void setPrice(String text) {
-        this.price = price;
-    }
 
 
 }

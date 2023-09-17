@@ -46,7 +46,7 @@ public class ProductScreenEdit {
                 product.setId(Integer.parseInt(JTFId.getText()));
                 product.setName(JTFName.getText());
                 product.setCategoryId(JCBCaterory.getSelectedIndex());
-                product.setPrice(JTFPrice.getText());
+                product.setPrice(Float.parseFloat(JTFPrice.getText()));
 
                 try {
                     daoProduct.edit(product);
@@ -79,12 +79,8 @@ public class ProductScreenEdit {
                 }
                 JTFId.setText(""+selected.getId());
                 JTFName.setText(selected.getName());
-                JTFPrice.setText(selected.getPrice());
+                JTFPrice.setText(""+selected.getPrice());
                 JCBCaterory.setSelectedIndex(selected.getCategoryId());
-
-
-                JTFName.setEditable(true);
-                JTFSecondName.setEditable(true);
 
             }
         });

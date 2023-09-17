@@ -10,20 +10,21 @@ CREATE TABLE `db_tchefoods_final`.`tb_user` (
   `user_password` VARCHAR(45) NOT NULL,
   `user_cellphone` VARCHAR(15) NOT NULL,
   `user_adress` VARCHAR(45) NOT NULL,
+  `user_gender` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`user_id`));
   
 CREATE TABLE `db_tchefoods_final`.`tb_category` (
   `category_id` INT NOT NULL AUTO_INCREMENT,
-  `cateogory_desc` VARCHAR(45) NOT NULL,
+  `category_desc` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`category_id`));
+
 
 CREATE TABLE `db_tchefoods_final`.`tb_product` (
   `product_id` INT NOT NULL AUTO_INCREMENT,
   `product_name` VARCHAR(45) NOT NULL,
   `product_price` FLOAT NOT NULL,
   `product_category_id` INT NULL,
-  PRIMARY KEY (`product_id`),
-  FOREIGN KEY (`product_category_id`) REFERENCES `db_tchefoods_final`.`tb_category`(`category_id`));
+  PRIMARY KEY (`product_id`));
   
 CREATE TABLE `db_tchefoods_final`.`tb_paymentmethod` (
   `paymentmethod_id` INT NOT NULL AUTO_INCREMENT,
@@ -33,10 +34,7 @@ CREATE TABLE `db_tchefoods_final`.`tb_paymentmethod` (
 CREATE TABLE `db_tchefoods_final`.`tb_order` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `order_user_id` INT NOT NULL,
-  `order_product_id` INT NOT NULL,
   `order_paymentmethod_id` INT NOT NULL,
   `order_datetime` DATETIME NOT NULL,
   `order_total` FLOAT NOT NULL,
-  PRIMARY KEY (`order_id`),
-  FOREIGN KEY (`order_product_id`) REFERENCES `db_tchefoods_final`.`tb_product`(`product_id`),
-  FOREIGN KEY (`order_paymentmethod_id`) REFERENCES `db_tchefoods_final`.`tb_paymentmethod`(`paymentmethod_id`));
+  PRIMARY KEY (`order_id`));

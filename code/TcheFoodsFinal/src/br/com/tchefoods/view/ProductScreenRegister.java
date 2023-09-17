@@ -55,7 +55,7 @@ public class ProductScreenRegister {
 
                 product.setName(JTFName.getText());
                 product.setCategoryId(JCBIdCategory.getSelectedIndex());
-                product.setPrice(JTFPrice.getText());
+                product.setPrice(Float.parseFloat(JTFPrice.getText()));
 
                 try {
                     daoProduct.save(product);
