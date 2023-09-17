@@ -31,7 +31,7 @@ public class ProductScreenRegister {
     public ProductScreenRegister()  {
         CategoryDAO categoryDAO = new CategoryDAO();
         try {
-            ArrayList<CategoryModel> listaCategorias = categoryDAO.selectAll();
+            ArrayList<CategoryModel > listaCategorias = categoryDAO.selectAll();
             for (CategoryModel categoryModel : listaCategorias){
                 JCBIdCategory.addItem((categoryModel));
             }
@@ -46,19 +46,19 @@ public class ProductScreenRegister {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBIdCategory.getSelectedIndex() == -1){
+                if (JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBIdCategory.getSelectedIndex() == -1 ){
                     JOptionPane.showMessageDialog(JPProductScreenRegister, "Please fullfill all the options");
                     return;
                 }
 
-                ProductModel user = new ProductModel();
+                ProductModel product = new ProductModel();
 
-                user.setName(JTFName.getText());
-                user.setCategoryId(JCBIdCategory.getSelectedIndex());
-                user.setPrice(JTFPrice.getText());
+                product.setName(JTFName.getText());
+                product.setCategoryId(JCBIdCategory.getSelectedIndex());
+                product.setPrice(Float.parseFloat(JTFPrice.getText()));
 
                 try {
-                    daoProduct.save(user);
+                    daoProduct.save(product);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {
@@ -71,7 +71,7 @@ public class ProductScreenRegister {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("ProductScreen");
+        JFrame frame = new JFrame("ProductScreenRegister");
         frame.setContentPane(new ProductScreenRegister().JPProductScreenRegister);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

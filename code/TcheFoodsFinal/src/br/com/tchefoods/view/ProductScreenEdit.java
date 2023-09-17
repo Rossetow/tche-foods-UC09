@@ -1,7 +1,9 @@
 package br.com.tchefoods.view;
 
 import br.com.tchefoods.dao.ProductDAO;
+import br.com.tchefoods.dao.UserDAO;
 import br.com.tchefoods.model.ProductModel;
+import br.com.tchefoods.model.UserModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,7 @@ public class ProductScreenEdit {
     private JLabel JLIdCategoryProduct;
     private JLabel JLPriceProduct;
     private JLabel JLId;
+    private JButton findByIdButton;
 
     public ProductScreenEdit() {
         JBSubmit.addActionListener(new ActionListener() {
@@ -38,15 +41,15 @@ public class ProductScreenEdit {
                     return;
                 }
 
-                ProductModel user = new ProductModel();
+                ProductModel product = new ProductModel();
 
-                user.setId(Integer.parseInt(JTFId.getText()));
-                user.setName(JTFName.getText());
-                user.setCategoryId(JCBCaterory.getSelectedIndex());
-                user.setPrice(JTFPrice.getText());
+                product.setId(Integer.parseInt(JTFId.getText()));
+                product.setName(JTFName.getText());
+                product.setCategoryId(JCBCaterory.getSelectedIndex());
+                product.setPrice(Float.parseFloat(JTFPrice.getText()));
 
                 try {
-                    daoProduct.edit(user);
+                    daoProduct.edit(product);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {
@@ -57,6 +60,28 @@ public class ProductScreenEdit {
                 JTFPrice.setEditable(false);
                 JCBCaterory.setEditable(false);
                 JOptionPane.showMessageDialog(JPProductScreenEdit, "User edited in the database successfully!");
+            }
+        });
+
+        findByIdButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProductModel selected = new ProductModel();
+                selected.setId(Integer.parseInt(JTFId.getText()));
+                ProductDAO daoProduct = new ProductDAO();
+
+                try {
+                    selected = daoProduct.selectById(selected);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JTFId.setText(""+selected.getId());
+                JTFName.setText(selected.getName());
+                JTFPrice.setText(""+selected.getPrice());
+                JCBCaterory.setSelectedIndex(selected.getCategoryId());
+
             }
         });
     }

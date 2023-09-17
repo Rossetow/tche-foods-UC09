@@ -35,15 +35,15 @@ public class ProductScreenDelete {
                     return;
                 }
 
-                ProductModel user = new ProductModel();
+                ProductModel product = new ProductModel();
 
-                user.setId(Integer.parseInt(JTFId.getText()));
-                user.setName(JTFName.getText());
-                user.setCategoryId(JCBCategory.getSelectedIndex());
-                user.setPrice(JTFPrice.getText());
+                product.setId(Integer.parseInt(JTFId.getText()));
+                product.setName(JTFName.getText());
+                product.setCategoryId(JCBCategory.getSelectedIndex());
+                product.setPrice(Float.parseFloat(JTFPrice.getText()));
 
                 try {
-                    daoProduct.delete(user);
+                    daoProduct.delete(product);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {
