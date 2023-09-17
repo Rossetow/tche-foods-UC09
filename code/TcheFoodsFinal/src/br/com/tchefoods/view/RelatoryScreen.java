@@ -18,4 +18,8 @@ public class RelatoryScreen {
         frame.pack();
         frame.setVisible(true);
     }
+
+    public JPanel getRelatoryScreen() {
+        return RelatoryScreen;
+    }
 }

@@ -50,6 +50,11 @@ public class UserScreenDelete {
         JTFCellphoneNumber.setText("");
         btngroup.clearSelection();
     }
+
+    public JPanel getUserPanel() {
+        return UserPanel;
+    }
+
     public UserScreenDelete(){
 
             btngroup.add(JRBFeminine);

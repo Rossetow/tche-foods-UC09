@@ -13,6 +13,11 @@ import java.util.ArrayList;
 
 public class ProductScreenRegister {
     private JPanel JPProductScreenRegister;
+
+    public JPanel getJPProductScreenRegister() {
+        return JPProductScreenRegister;
+    }
+
     private JTextField JTFName;
     private JLabel JLNameProduct;
     private JComboBox JCBIdCategory;

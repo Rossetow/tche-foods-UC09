@@ -52,6 +52,10 @@ public class UserScreenEdit {
         btngroup.clearSelection();
     }
 
+    public JPanel getUserPanel() {
+        return UserPanel;
+    }
+
     public UserScreenEdit(){
 
         btngroup.add(JRBFeminine);
