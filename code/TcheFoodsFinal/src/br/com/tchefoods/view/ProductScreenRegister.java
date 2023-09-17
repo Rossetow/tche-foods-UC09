@@ -46,19 +46,19 @@ public class ProductScreenRegister {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBIdCategory.getSelectedIndex() == -1){
+                if (JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty()){
                     JOptionPane.showMessageDialog(JPProductScreenRegister, "Please fullfill all the options");
                     return;
                 }
 
-                ProductModel user = new ProductModel();
+                ProductModel product = new ProductModel();
 
-                user.setName(JTFName.getText());
-                user.setCategoryId(JCBIdCategory.getSelectedIndex());
-                user.setPrice(JTFPrice.getText());
+                product.setName(JTFName.getText());
+                product.setCategoryId(JCBIdCategory.getSelectedIndex());
+                product.setPrice(JTFPrice.getText());
 
                 try {
-                    daoProduct.save(user);
+                    daoProduct.save(product);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {
