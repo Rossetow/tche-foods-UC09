@@ -21,8 +21,6 @@ public class HomeScreen {
 
     private JButton JBUserDelete;
     private JButton JBOrderCreate;
-    private JButton JBOrderEdit;
-    private JButton JBOrderDelete;
     private JButton JBProductDelete;
     private JButton JBProductEdit;
     private JButton JBProductRegister;
