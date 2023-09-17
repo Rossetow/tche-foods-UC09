@@ -31,7 +31,7 @@ public class ProductScreenRegister {
     public ProductScreenRegister()  {
         CategoryDAO categoryDAO = new CategoryDAO();
         try {
-            ArrayList<CategoryModel> listaCategorias = categoryDAO.selectAll();
+            ArrayList<CategoryModel > listaCategorias = categoryDAO.selectAll();
             for (CategoryModel categoryModel : listaCategorias){
                 JCBIdCategory.addItem((categoryModel));
             }
@@ -71,7 +71,7 @@ public class ProductScreenRegister {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("ProductScreen");
+        JFrame frame = new JFrame("ProductScreenRegister");
         frame.setContentPane(new ProductScreenRegister().JPProductScreenRegister);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

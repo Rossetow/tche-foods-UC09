@@ -56,7 +56,7 @@ public class ProductDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.cateogory_desc FROM tb_product as p" +
+        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.category_desc FROM tb_product as p" +
                 "INNER JOIN tb_category as c on c.category_id = p.product_category_id;");
         ResultSet rs = stmt.executeQuery();
 
@@ -77,7 +77,7 @@ public class ProductDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.cateogory_desc FROM tb_product as p" +
+        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.category_desc FROM tb_product as p" +
                 "INNER JOIN tb_category as c on c.category_id = p.product_category_id" +
                 "WHERE product_id = ?;");
         stmt.setInt(1, product.getId());
@@ -98,7 +98,7 @@ public class ProductDAO {
         PreparedStatement stmt = null;
         product.setName("%" + product.getName()+"%");
 
-        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.cateogory_desc FROM tb_product as p" +
+        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.category_desc FROM tb_product as p" +
                 "INNER JOIN tb_category as c on c.category_id = p.product_category_id" +
                 "WHERE product_name = ?;");
         stmt.setString(1, product.getName());
