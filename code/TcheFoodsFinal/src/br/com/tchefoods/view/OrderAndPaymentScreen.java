@@ -94,6 +94,16 @@ public class OrderAndPaymentScreen {
                 }
             }
         });
+        JBSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame userConsultScreen = new JFrame();
+                userConsultScreen.setContentPane(new UserScreenConsult().getPanelUserConsult());
+                userConsultScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                userConsultScreen.pack();
+                userConsultScreen.setVisible(true);
+            }
+        });
     }
 
     private void initJCB() throws SQLException, ClassNotFoundException {
