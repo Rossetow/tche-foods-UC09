@@ -26,15 +26,17 @@ CREATE TABLE `db_tchefoods_final`.`tb_product` (
   FOREIGN KEY (`product_category_id`) REFERENCES `db_tchefoods_final`.`tb_category`(`category_id`));
   
 CREATE TABLE `db_tchefoods_final`.`tb_paymentmethod` (
-  `paymentmthod_id` INT NOT NULL AUTO_INCREMENT,
+  `paymentmethod_id` INT NOT NULL AUTO_INCREMENT,
   `paymentmethod_desc` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`paymentmthod_id`));
 
 CREATE TABLE `db_tchefoods_final`.`tb_order` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `order_user_id` INT NOT NULL,
+  `order_product_id` INT NOT NULL,
   `order_paymentmethod_id` INT NOT NULL,
   `order_datetime` DATETIME NOT NULL,
   `order_total` FLOAT NOT NULL,
   PRIMARY KEY (`order_id`),
-  FOREIGN KEY (`order_paymentmethod_id`) REFERENCES `db_tchefoods_final`.`tb_paymentmethod`(`paymentmthod_id`));
+  FOREIGN KEY (`order_product_id`) REFERENCES `db_tchefoods_final`.`tb_product`(`product_id`),
+  FOREIGN KEY (`order_paymentmethod_id`) REFERENCES `db_tchefoods_final`.`tb_paymentmethod`(`paymentmethod_id`));
