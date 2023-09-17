@@ -1,9 +1,11 @@
 package br.com.tchefoods.view;
 
 import br.com.tchefoods.dao.OrderDAO;
+import br.com.tchefoods.dao.PaymenthMethodDAO;
 import br.com.tchefoods.dao.ProductDAO;
 import br.com.tchefoods.dao.UserDAO;
 import br.com.tchefoods.model.OrderModel;
+import br.com.tchefoods.model.PaymentMethodModel;
 import br.com.tchefoods.model.ProductModel;
 import br.com.tchefoods.model.UserModel;
 
@@ -11,6 +13,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class OrderAndPaymentScreen {
     private JPanel PanelOrder;
@@ -33,8 +36,13 @@ public class OrderAndPaymentScreen {
 
     private OrderModel order = new OrderModel();
     public OrderAndPaymentScreen (){
-
-        
+        try {
+            initJCB();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         JBAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,6 +77,7 @@ public class OrderAndPaymentScreen {
                     throw new RuntimeException(ex);
                 }
                 order.setUserId(user.getId());
+                JBFinish.setEnabled(true);
             }
         });
         JBFinish.addActionListener(new ActionListener() {
@@ -85,6 +94,21 @@ public class OrderAndPaymentScreen {
                 }
             }
         });
+    }
+
+    private void initJCB() throws SQLException, ClassNotFoundException {
+        PaymenthMethodDAO paymenthMethodDAO = new PaymenthMethodDAO();
+        if(paymenthMethodDAO.selectAll().size() == 0){
+            JOptionPane.showMessageDialog(PanelOrder, "You haven't registered any payment methods!");
+            return;
+        }
+        ArrayList<PaymentMethodModel> arrayToIterate = paymenthMethodDAO.selectAll();
+        String[] JCBModel = new String [arrayToIterate.size()];
+
+        for (int i = 0; i < arrayToIterate.size(); i++) {
+            JCBModel[i] = arrayToIterate.get(i).getDesc();
+        }
+        JCBPaymentMethod.setModel(new DefaultComboBoxModel(JCBModel));
     }
 
     public static void main(String[] args) {

@@ -24,7 +24,7 @@ public class PaymenthMethodDAO {
         stmt.executeUpdate();
     }
 
-    public ArrayList<PaymentMethodModel> selectAll(PaymentMethodModel paymentMethod) throws SQLException, ClassNotFoundException {
+    public ArrayList<PaymentMethodModel> selectAll() throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
