@@ -18,7 +18,7 @@ public class OrderDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("INSERT INTO tb_oder(order_user_id, order_paymentmethod_id, order_datetime, order_total) VALUES (?, ?, ?, ?, ?)");
+        stmt = conn.prepareStatement("INSERT INTO tb_order(order_user_id, order_product_id, order_paymentmethod_id, order_datetime, order_total) VALUES (?, ?, ?, ?, ?)");
 
         stmt.setInt(1, order.getUserId());
         stmt.setInt(2, order.getProductId());

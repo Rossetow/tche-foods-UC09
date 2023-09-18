@@ -18,7 +18,7 @@ public class PaymenthMethodDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("INSERT INTO tb_paymenthmethod VALUES (?)");
+        stmt = conn.prepareStatement("INSERT INTO tb_paymentmethod (paymentmethod_desc )  VALUES (?)");
 
         stmt.setString(1, paymenthMethod.getDesc());
         stmt.executeUpdate();
