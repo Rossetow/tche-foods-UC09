@@ -2,8 +2,6 @@ package br.com.tchefoods.dao;
 
 import br.com.tchefoods.infra.ConnectionMysql;
 import br.com.tchefoods.model.ProductModel;
-import br.com.tchefoods.model.ProductTableModel;
-import br.com.tchefoods.model.UserModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,7 +49,7 @@ public class ProductDAO {
         stmt.executeUpdate();
     }
 
-    public ArrayList<ProductModel> selectAll(ProductModel product) throws SQLException, ClassNotFoundException {
+    public ArrayList<ProductModel> selectAll() throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
