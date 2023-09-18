@@ -1,13 +1,12 @@
 package br.com.tchefoods.view;
 
 import br.com.tchefoods.dao.OrderDAO;
-import br.com.tchefoods.dao.UserDAO;
 import br.com.tchefoods.model.OrderModel;
 import br.com.tchefoods.model.OrderTableModel;
-import br.com.tchefoods.model.UserModel;
-import br.com.tchefoods.model.UserTableModel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class RelatoryScreen {
     private JLabel JLTitle2;
     private JTable JTBRelatory;
     private JComboBox JCBMonth;
-    private JPanel RelatoryScreen;
+    private JPanel PanelRelatory;
     private JTextField JTFDay;
     private JTextField JTFYear;
     private JLabel JLDay;
@@ -32,6 +31,23 @@ public class RelatoryScreen {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        JBFilter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (JTFDay.getText().isEmpty()||JTFYear.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(PanelRelatory, "Enter the date, please.");
+                    return;
+                }
+                String date =(JTFDay.getText()+"/"+JCBMonth.getSelectedItem()+"/"+JTFYear.getText());
+                try {
+                    JTBRelatory.setModel(new OrderTableModel(getOrdersByDate(date)));
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     private void initMyTable() throws SQLException, ClassNotFoundException {
@@ -42,10 +58,15 @@ public class RelatoryScreen {
         OrderDAO dao = new OrderDAO();
         return dao.selectAll();
     }
+
+    public List<OrderModel> getOrdersByDate(String date) throws SQLException, ClassNotFoundException {
+        OrderDAO dao = new OrderDAO();
+        return dao.selectByDate(date);
+    }
     public static void main(String[] args) {
     }
 
     public JPanel getRelatoryScreen() {
-        return RelatoryScreen;
+        return PanelRelatory;
     }
 }
