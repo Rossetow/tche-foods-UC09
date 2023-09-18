@@ -35,6 +35,13 @@ public class UserScreenConsult {
     private JTable JTUser;
 
     public UserScreenConsult() {
+        try {
+            initMyTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         this.JTUser.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
