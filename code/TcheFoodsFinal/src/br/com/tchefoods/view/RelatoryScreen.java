@@ -24,6 +24,9 @@ public class RelatoryScreen {
     private JButton JBFilter;
 
     public RelatoryScreen () {
+
+        this.JCBMonth.setModel(new DefaultComboBoxModel(new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+
         try {
             initMyTable();
         } catch (SQLException e) {

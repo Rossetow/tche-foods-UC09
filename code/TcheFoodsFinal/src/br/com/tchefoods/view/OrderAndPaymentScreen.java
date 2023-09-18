@@ -43,6 +43,8 @@ public class OrderAndPaymentScreen {
 
     private OrderModel order = new OrderModel();
     public OrderAndPaymentScreen (){
+        this.JCBMonth.setModel(new DefaultComboBoxModel(new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+
         try {
             initJCB();
         } catch (SQLException e) {
