@@ -54,7 +54,7 @@ public class ProductScreenRegister {
                 ProductModel product = new ProductModel();
 
                 product.setName(JTFName.getText());
-                product.setCategoryId(JCBIdCategory.getSelectedIndex());
+                product.setCategoryId(JCBIdCategory.getSelectedIndex() + 1);
                 product.setPrice(Float.parseFloat(JTFPrice.getText()));
 
                 try {

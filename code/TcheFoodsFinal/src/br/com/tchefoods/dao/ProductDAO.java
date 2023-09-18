@@ -35,8 +35,8 @@ public class ProductDAO {
 
         stmt = conn.prepareStatement("UPDATE tb_product SET product_name = ?, product_price = ?, product_category_id = ? WHERE product_id = ?");
         stmt.setString(1, product.getName());
-        stmt.setInt(2, product.getCategoryId());
-        stmt.setFloat(3, product.getPrice());
+        stmt.setFloat(2, product.getPrice());
+        stmt.setInt(3, product.getCategoryId());
         stmt.setInt(4,product.getId());
         stmt.executeUpdate();
     }
@@ -77,8 +77,8 @@ public class ProductDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.category_desc FROM tb_product as p" +
-                "INNER JOIN tb_category as c on c.category_id = p.product_category_id" +
+        stmt = conn.prepareStatement("SELECT product_id, product_name, c.category_desc, product_price FROM tb_product as p" +
+                "INNER JOIN tb_category as c on c.category_id = product_category_id " +
                 "WHERE product_id = ?;");
         stmt.setInt(1, product.getId());
         ResultSet rs = stmt.executeQuery();
@@ -96,10 +96,10 @@ public class ProductDAO {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
-        product.setName("%" + product.getName()+"%");
+       /* product.setName("'"+product.getName() + "'"); */
 
-        stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.category_desc FROM tb_product as p" +
-                "INNER JOIN tb_category as c on c.category_id = p.product_category_id" +
+        stmt = conn.prepareStatement("SELECT product_id, product_name, c.category_desc, product_price FROM tb_product as p" +
+                "INNER JOIN tb_category as c on c.category_id = product_category_id " +
                 "WHERE product_name = ?;");
         stmt.setString(1, product.getName());
         ResultSet rs = stmt.executeQuery();
