@@ -130,14 +130,14 @@ public class UserScreenConsult {
         });
     }
 
-        private void initMyTable() throws SQLException, ClassNotFoundException {
-            this.JTUser.setModel(new UserTableModel(getUsers()));
-        }
+    private void initMyTable() throws SQLException, ClassNotFoundException {
+        this.JTUser.setModel(new UserTableModel(getUsers()));
+    }
 
-        public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {
-            UserDAO dao = new UserDAO();
-            return dao.selectAll();
-        }
+    public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {
+        UserDAO dao = new UserDAO();
+        return dao.selectAll();
+    }
 
     public JPanel getPanelUserConsult() {
         return PanelUserConsult;

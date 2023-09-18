@@ -41,4 +41,19 @@ public class PaymenthMethodDAO {
         }
         return (output);
     }
+
+    public PaymentMethodModel selectById (PaymentMethodModel method) throws SQLException, ClassNotFoundException {
+        ConnectionMysql conexaoMysql = new ConnectionMysql();
+        Connection conn = conexaoMysql.getConection();
+        PreparedStatement stmt = null;
+
+        stmt = conn.prepareStatement("SELECT paymentmethod_id, paymentmethod_desc FROM tb_paymentmethod WHERE paymentmethod_id = ?");
+        stmt.setInt(1, method.getId());
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        PaymentMethodModel output = new PaymentMethodModel();
+        output.setId(rs.getInt("paymentmethod_id"));
+        output.setDesc(rs.getString("paymentmethod_desc"));
+        return (output);
+    }
 }

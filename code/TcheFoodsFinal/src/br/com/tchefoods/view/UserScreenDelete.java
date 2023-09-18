@@ -182,6 +182,11 @@ public class UserScreenDelete {
         JBFindByName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                if(JTFName.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(UserPanel, "Insert a name to search");
+                    return;
+                }
                 UserModel selected = new UserModel();
                 selected.setName(JTFName.getText());
                 UserDAO dao = new UserDAO();
