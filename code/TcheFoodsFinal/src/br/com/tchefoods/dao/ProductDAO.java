@@ -48,7 +48,7 @@ public class ProductDAO {
 
         stmt = conn.prepareStatement("DELETE FROM tb_product WHERE product_id = ?");
         stmt.setInt(1, product.getId());
-        ResultSet rs = stmt.executeQuery();
+        stmt.executeUpdate();
     }
 
     public ArrayList<ProductModel> selectAll(ProductModel product) throws SQLException, ClassNotFoundException {
