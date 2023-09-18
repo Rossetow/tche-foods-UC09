@@ -34,6 +34,13 @@ public class ProductScreenEdit {
     private JLabel JLId;
     private JButton findByIdButton;
 
+    public void clear() {
+        JTFId.setText("");
+        JTFName.setText("");
+        JTFPrice.setText("");
+        JCBIdCategory.setSelectedIndex(-1);
+    }
+
     public ProductScreenEdit() {
         CategoryDAO categoryDAO = new CategoryDAO();
         try {
@@ -73,6 +80,7 @@ public class ProductScreenEdit {
 
 
                 JOptionPane.showMessageDialog(JPProductScreenEdit, "Product edited in the database successfully!");
+                clear();
             }
         });
 

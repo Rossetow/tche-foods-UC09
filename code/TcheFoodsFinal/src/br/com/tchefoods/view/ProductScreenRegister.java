@@ -27,6 +27,12 @@ public class ProductScreenRegister {
     private JButton JBSubmit;
     private JLabel JLProductScreen;
 
+    public void clear() {
+        JTFName.setText("");
+        JTFPrice.setText("");
+        JCBIdCategory.setSelectedIndex(0);
+    }
+
 
     public ProductScreenRegister()  {
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -65,7 +71,8 @@ public class ProductScreenRegister {
                     throw new RuntimeException(ex);
                 }
 
-                JOptionPane.showMessageDialog(JPProductScreenRegister, "User added in the database successfuly!");
+                JOptionPane.showMessageDialog(JPProductScreenRegister, "Product added in the database successfuly!");
+                clear();
             }
         });
     }
