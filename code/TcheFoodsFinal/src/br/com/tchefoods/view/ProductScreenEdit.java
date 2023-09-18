@@ -1,7 +1,9 @@
 package br.com.tchefoods.view;
 
+import br.com.tchefoods.dao.CategoryDAO;
 import br.com.tchefoods.dao.ProductDAO;
 import br.com.tchefoods.dao.UserDAO;
+import br.com.tchefoods.model.CategoryModel;
 import br.com.tchefoods.model.ProductModel;
 import br.com.tchefoods.model.UserModel;
 
@@ -9,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProductScreenEdit {
 
@@ -16,7 +19,7 @@ public class ProductScreenEdit {
     private JButton JBSubmit;
     private JTextField JTFId;
     private JTextField JTFName;
-    private JComboBox JCBCaterory;
+    private JComboBox JCBIdCategory;
     private JTextField JTFPrice;
     private JPanel JPProductScreenEdit;
     private JLabel JLEdicaoProduto;
@@ -32,11 +35,23 @@ public class ProductScreenEdit {
     private JButton findByIdButton;
 
     public ProductScreenEdit() {
+        CategoryDAO categoryDAO = new CategoryDAO();
+        try {
+            ArrayList<CategoryModel> listaIdCategorias = categoryDAO.selectAll();
+            for (CategoryModel categoryModel : listaIdCategorias){
+                JCBIdCategory.addItem((categoryModel));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         JBSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProductDAO daoProduct = new ProductDAO();
-                if (JTFId.getText().isEmpty() || JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBCaterory.getSelectedIndex() == -1){
+                if (JTFId.getText().isEmpty() || JTFName.getText().isEmpty() || JTFPrice.getText().isEmpty() || JCBIdCategory.getSelectedIndex() == -1){
                     JOptionPane.showMessageDialog(JPProductScreenEdit, "Please fullfill all the options");
                     return;
                 }
@@ -45,7 +60,7 @@ public class ProductScreenEdit {
 
                 product.setId(Integer.parseInt(JTFId.getText()));
                 product.setName(JTFName.getText());
-                product.setCategoryId(JCBCaterory.getSelectedIndex());
+                product.setCategoryId(JCBIdCategory.getSelectedIndex() + 1);
                 product.setPrice(Float.parseFloat(JTFPrice.getText()));
 
                 try {
@@ -56,10 +71,8 @@ public class ProductScreenEdit {
                     throw new RuntimeException(ex);
                 }
 
-                JTFName.setEditable(false);
-                JTFPrice.setEditable(false);
-                JCBCaterory.setEditable(false);
-                JOptionPane.showMessageDialog(JPProductScreenEdit, "User edited in the database successfully!");
+
+                JOptionPane.showMessageDialog(JPProductScreenEdit, "Product edited in the database successfully!");
             }
         });
 
@@ -80,7 +93,7 @@ public class ProductScreenEdit {
                 JTFId.setText(""+selected.getId());
                 JTFName.setText(selected.getName());
                 JTFPrice.setText(""+selected.getPrice());
-                JCBCaterory.setSelectedIndex(selected.getCategoryId());
+                JCBIdCategory.setSelectedIndex(selected.getCategoryId() - 1);
 
             }
         });
