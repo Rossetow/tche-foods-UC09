@@ -66,7 +66,13 @@ public class RelatoryScreen {
         OrderDAO dao = new OrderDAO();
         return dao.selectByDate(date);
     }
+
     public static void main(String[] args) {
+        JFrame frame = new JFrame("RelatoryScreen");
+        frame.setContentPane(new RelatoryScreen().PanelRelatory);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public JPanel getRelatoryScreen() {

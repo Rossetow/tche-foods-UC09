@@ -33,13 +33,13 @@ public class OrderDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("SELECT order_id, order_user_id, order_product_id order_paymentmethod_id, order_datetime, order_total FROM tb_paymentmethod");
+        stmt = conn.prepareStatement("SELECT order_id, order_user_id, order_product_id, order_paymentmethod_id, order_datetime, order_total FROM tb_order");
         ResultSet rs = stmt.executeQuery();
 
         ArrayList<OrderModel> output = new ArrayList<>();
         while(rs.next()){
             OrderModel addOrder = new OrderModel();
-            addOrder.setId(rs.getInt("paymentmethod_id"));
+            addOrder.setId(rs.getInt("order_id"));
             addOrder.setUserId(rs.getInt("order_user_id"));
             addOrder.setProductId(rs.getInt("order_product_id"));
             addOrder.setPaymentMethodId(rs.getInt("order_paymentmethod_id"));
