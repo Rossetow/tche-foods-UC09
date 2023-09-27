@@ -56,8 +56,8 @@ public class CategoryDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("DELETE FROM tb_category WHERE id = ?");
+        stmt = conn.prepareStatement("DELETE FROM tb_category WHERE category_id = ?");
         stmt.setInt(1, category.getId());
-        ResultSet rs = stmt.executeQuery();
+        stmt.executeUpdate();
     }
 }
