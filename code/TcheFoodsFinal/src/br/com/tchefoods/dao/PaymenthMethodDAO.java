@@ -18,7 +18,7 @@ public class PaymenthMethodDAO {
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
-        stmt = conn.prepareStatement("INSERT INTO tb_paymenthmethod VALUES (?)");
+        stmt = conn.prepareStatement("INSERT INTO tb_paymentmethod (paymentmethod_desc )  VALUES (?)");
 
         stmt.setString(1, paymenthMethod.getDesc());
         stmt.executeUpdate();
@@ -39,6 +39,21 @@ public class PaymenthMethodDAO {
             addPaymentMethod.setDesc(rs.getString("paymentmethod_desc"));
             output.add(addPaymentMethod);
         }
+        return (output);
+    }
+
+    public PaymentMethodModel selectById (PaymentMethodModel method) throws SQLException, ClassNotFoundException {
+        ConnectionMysql conexaoMysql = new ConnectionMysql();
+        Connection conn = conexaoMysql.getConection();
+        PreparedStatement stmt = null;
+
+        stmt = conn.prepareStatement("SELECT paymentmethod_id, paymentmethod_desc FROM tb_paymentmethod WHERE paymentmethod_id = ?");
+        stmt.setInt(1, method.getId());
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        PaymentMethodModel output = new PaymentMethodModel();
+        output.setId(rs.getInt("paymentmethod_id"));
+        output.setDesc(rs.getString("paymentmethod_desc"));
         return (output);
     }
 }

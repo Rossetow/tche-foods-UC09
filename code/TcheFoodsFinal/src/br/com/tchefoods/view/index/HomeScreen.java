@@ -28,6 +28,9 @@ public class HomeScreen {
     private JButton JBCategoryEdit;
     private JButton JBCategoryDelete;
     private JButton JBRelatoryOpen;
+    private JButton JBUserView;
+    private JButton JBProductView;
+    private JButton JBCategoryView;
     private JButton JBUser;
 
     public HomeScreen() {
@@ -118,6 +121,26 @@ public class HomeScreen {
             public void actionPerformed(ActionEvent e) {
                 JFrame userIndexScreen = new JFrame();
                 userIndexScreen.setContentPane(new RelatoryScreen().getRelatoryScreen());
+                userIndexScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                userIndexScreen.pack();
+                userIndexScreen.setVisible(true);
+            }
+        });
+        JBUserView.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame userIndexScreen = new JFrame();
+                userIndexScreen.setContentPane(new UserScreenConsult().getPanelUserConsult());
+                userIndexScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                userIndexScreen.pack();
+                userIndexScreen.setVisible(true);
+            }
+        });
+        JBProductView.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame userIndexScreen = new JFrame();
+                userIndexScreen.setContentPane(new ProductScreenView().getPanelScreenView());
                 userIndexScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 userIndexScreen.pack();
                 userIndexScreen.setVisible(true);

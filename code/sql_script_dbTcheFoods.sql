@@ -29,12 +29,13 @@ CREATE TABLE `db_tchefoods_final`.`tb_product` (
 CREATE TABLE `db_tchefoods_final`.`tb_paymentmethod` (
   `paymentmethod_id` INT NOT NULL AUTO_INCREMENT,
   `paymentmethod_desc` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`paymentmthod_id`));
+  PRIMARY KEY (`paymentmethod_id`));
 
 CREATE TABLE `db_tchefoods_final`.`tb_order` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `order_user_id` INT NOT NULL,
+  `order_product_id` INT NOT NULL,
   `order_paymentmethod_id` INT NOT NULL,
-  `order_datetime` DATETIME NOT NULL,
+  `order_datetime` VARCHAR(15) NOT NULL,
   `order_total` FLOAT NOT NULL,
   PRIMARY KEY (`order_id`));

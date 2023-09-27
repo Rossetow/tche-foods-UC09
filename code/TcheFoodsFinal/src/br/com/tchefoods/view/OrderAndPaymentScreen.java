@@ -28,6 +28,13 @@ public class OrderAndPaymentScreen {
     private JLabel JLProductPriceTotal;
     private JTextField JTFUser;
     private JButton JBSearch;
+    private JTextField JTFDay;
+    private JTextField JTFYear;
+    private JComboBox JCBMonth;
+    private JButton JBSaveDate;
+    private JLabel JLDay;
+    private JLabel JLMonth;
+    private JLabel JLYear;
     private JSpinner JSPQuantity;
 
     public JPanel getPanelOrder() {
@@ -36,6 +43,8 @@ public class OrderAndPaymentScreen {
 
     private OrderModel order = new OrderModel();
     public OrderAndPaymentScreen (){
+        this.JCBMonth.setModel(new DefaultComboBoxModel(new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+
         try {
             initJCB();
         } catch (SQLException e) {
@@ -77,7 +86,6 @@ public class OrderAndPaymentScreen {
                     throw new RuntimeException(ex);
                 }
                 order.setUserId(user.getId());
-                JBFinish.setEnabled(true);
             }
         });
         JBFinish.addActionListener(new ActionListener() {
@@ -104,12 +112,24 @@ public class OrderAndPaymentScreen {
                 userConsultScreen.setVisible(true);
             }
         });
+        JBSaveDate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (JTFDay.getText().isEmpty()||JTFYear.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(PanelOrder, "Enter the date, please.");
+                    return;
+                }
+                order.setDateTime(JTFDay.getText()+"/"+JCBMonth.getSelectedItem()+"/"+JTFYear.getText());
+                JBFinish.setEnabled(true);
+            }
+        });
     }
 
     private void initJCB() throws SQLException, ClassNotFoundException {
         PaymenthMethodDAO paymenthMethodDAO = new PaymenthMethodDAO();
         if(paymenthMethodDAO.selectAll().size() == 0){
             JOptionPane.showMessageDialog(PanelOrder, "You haven't registered any payment methods!");
+            JBAdd.setEnabled(false);
             return;
         }
         ArrayList<PaymentMethodModel> arrayToIterate = paymenthMethodDAO.selectAll();

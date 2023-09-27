@@ -35,6 +35,13 @@ public class UserScreenConsult {
     private JTable JTUser;
 
     public UserScreenConsult() {
+        try {
+            initMyTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         this.JTUser.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -130,14 +137,14 @@ public class UserScreenConsult {
         });
     }
 
-        private void initMyTable() throws SQLException, ClassNotFoundException {
-            this.JTUser.setModel(new UserTableModel(getUsers()));
-        }
+    private void initMyTable() throws SQLException, ClassNotFoundException {
+        this.JTUser.setModel(new UserTableModel(getUsers()));
+    }
 
-        public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {
-            UserDAO dao = new UserDAO();
-            return dao.selectAll();
-        }
+    public List<UserModel> getUsers() throws SQLException, ClassNotFoundException {
+        UserDAO dao = new UserDAO();
+        return dao.selectAll();
+    }
 
     public JPanel getPanelUserConsult() {
         return PanelUserConsult;

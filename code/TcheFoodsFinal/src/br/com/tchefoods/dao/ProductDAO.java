@@ -2,8 +2,6 @@ package br.com.tchefoods.dao;
 
 import br.com.tchefoods.infra.ConnectionMysql;
 import br.com.tchefoods.model.ProductModel;
-import br.com.tchefoods.model.ProductTableModel;
-import br.com.tchefoods.model.UserModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,16 +46,16 @@ public class ProductDAO {
 
         stmt = conn.prepareStatement("DELETE FROM tb_product WHERE product_id = ?");
         stmt.setInt(1, product.getId());
-        ResultSet rs = stmt.executeQuery();
+        stmt.executeUpdate();
     }
 
-    public ArrayList<ProductModel> selectAll(ProductModel product) throws SQLException, ClassNotFoundException {
+    public ArrayList<ProductModel> selectAll() throws SQLException, ClassNotFoundException {
         ConnectionMysql conexaoMysql = new ConnectionMysql();
         Connection conn = conexaoMysql.getConection();
         PreparedStatement stmt = null;
 
         stmt = conn.prepareStatement("SELECT product_id, product_name, product_price, c.category_desc FROM tb_product as p" +
-                "INNER JOIN tb_category as c on c.category_id = p.product_category_id;");
+                "INNER JOIN tb_category as c on c.category_id = product_category_id;");
         ResultSet rs = stmt.executeQuery();
 
         ArrayList<ProductModel> output = new ArrayList<>();
